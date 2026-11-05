@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sanskrutoy Creator Hub — Студия и тулкит ютубера и монтажёра</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#0f0f13',
+                        bgCard: '#16161d',
+                        bgElevated: '#1e1e28',
+                        neonRed: '#ff2a5f',
+                        neonPurple: '#7c3aed',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #0f0f13;
+            --bg-card: #16161d;
+            --neon-red: #ff2a5f;
+            --neon-purple: #7c3aed;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Фоновое свечение */
+        .ambient-glow {
+            position: fixed;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 850px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255,42,95,0.12) 0%, rgba(124,58,237,0.10) 45%, rgba(15,15,19,0) 75%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(40px);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f13;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #272733;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff2a5f;
+        }
+
+        /* Неоновые границы и карточки */
+        .studio-card {
+            background: rgba(22, 22, 29, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+        .studio-card:hover {
+            border-color: rgba(255, 42, 95, 0.25);
+        }
+
+        /* Кнопки табов */
+        .tab-btn {
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(255, 42, 95, 0.18), rgba(124, 58, 237, 0.18));
+            border-color: #ff2a5f;
+            color: #ffffff;
+            box-shadow: 0 8px 25px -6px rgba(255, 42, 95, 0.35);
+        }
+
+        /* Ползунки */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #262633;
+            height: 6px;
+            border-radius: 999px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff2a5f, #7c3aed);
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(255, 42, 95, 0.7);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        /* Обрезка текста YouTube в 2 строки */
+        .yt-line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Сетка третей для превью */
+        .rule-of-thirds-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 42, 95, 0.45) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 42, 95, 0.45) 1px, transparent 1px);
+            background-size: 33.333% 33.333%;
+        }
+
+        /* Пульсация кнопки Tap BPM */
+        @keyframes tapPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0.7); transform: scale(0.97); }
+            70% { box-shadow: 0 0 0 18px rgba(255, 42, 95, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0); transform: scale(1); }
+        }
+        .tap-active-pulse {
+            animation: tapPulse 0.35s ease-out;
+        }
+
+        /* Анимация переключения вкладок */
+        .tab-panel {
+            animation: fadeSlideIn 0.28s ease-out;
+        }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-neonRed selection:text-white">
+
+    <!-- Фоновое неоновое свечение -->
+    <div class="ambient-glow"></div>
+
+    <!-- Уведомления (Тосты) -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- ШАПКА САЙТА -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0f0f13]/85 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+            <!-- Логотип sanskrutoy studio -->
+            <div class="flex items-center gap-3.5">
+                <div class="relative group cursor-pointer" onclick="switchTab('tab-thumbnail')">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-neonRed to-neonPurple flex items-center justify-center shadow-lg shadow-neonRed/25 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-play text-white text-lg translate-x-0.5"></i>
+                    </div>
+                    <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-[#0f0f13]" title="Все системы активны"></span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white">
+                            sanskrutoy <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonRed to-neonPurple">studio</span>
+                        </span>
+                        <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-neonRed/15 text-neonRed border border-neonRed/30">
+                            PRO TOOLKIT v2.5
+                        </span>
+                    </div>
+                    <p class="text-xs text-zinc-400 hidden sm:block">Студия и рабочий хаб ютубера, стримера и монтажёра</p>
+                </div>
+            </div>
+
+            <!-- Правая часть: индикатор автосохранения и ссылка на GitHub -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-zinc-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Автосохранение активно</span>
+                </div>
+
+                <button onclick="resetAllStudioData()" title="Сбросить демо-данные к начальным"
+                    class="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-400 hover:text-white transition text-xs sm:text-sm">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+
+                <a href="https://github.com/sanskrutoy" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-neonRed/90 to-neonPurple/90 hover:from-neonRed hover:to-neonPurple shadow-lg shadow-neonRed/20 hover:shadow-neonRed/40 transition-all active:scale-95">
+                    <i class="fa-brands fa-github text-base sm:text-lg"></i>
+                    <span>GitHub</span>
+                    <span class="hidden sm:inline font-mono text-white/80">@sanskrutoy</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-75"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ ПО 4 ИНСТРУМЕНТАМ -->
+    <nav class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+            <button id="btn-tab-thumbnail" onclick="switchTab('tab-thumbnail')"
+                class="tab-btn active flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
+                <div class="w-10 h-10 rounded-xl bg-neonRed/15 border border-neonRed/30 flex items-center justify-center text-neonRed shrink-0 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-eye text-base"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 01</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">Тестер превью YouTube</div>
+                </div>
+            </button>
+
+            <button id="btn-tab-bpm" onclick="switchTab('tab-bpm')"
+                class="tab-btn flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
+                <div class="w-10 h-10 rounded-xl bg-neonPurple/15 border border-neonPurple/30 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-wave-square text-base"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 02</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">Бит-синх и Калькулятор AE</div>
+                </div>
+            </button>
+
+            <button id="btn-tab-chapters" onclick="switchTab('tab-chapters')"
+                class="tab-btn flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-list-check text-base"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 03</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">Таймкоды и Диктор</div>
+                </div>
+            </button>
+
+            <button id="btn-tab-kanban" onclick="switchTab('tab-kanban')"
+                class="tab-btn flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-table-columns text-base"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 04</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">Продакшен & Чек-лист</div>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5">
+
+        <!-- =====================================================================
+             ВКЛАДКА 1: ТЕСТЕР ПРЕВЬЮ И НАЗВАНИЙ YOUTUBE
+             ===================================================================== -->
+        <section id="tab-thumbnail" class="tab-panel space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Левая панель настроек (5 колонок) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-image text-neonRed"></i>
+                                <span>Загрузка превью (16:9)</span>
+                            </h2>
+                            <button onclick="generateDemoThumbnail()"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-neonRed/20 to-neonPurple/20 hover:from-neonRed/30 hover:to-neonPurple/30 text-white border border-neonRed/40 transition">
+                                <i class="fa-solid fa-wand-magic-sparkles text-neonRed"></i>
+                                <span>Демо-превью</span>
+                            </button>
+                        </div>
+
+                        <!-- Зона Drag & Drop -->
+                        <div id="dropZone"
+                            onclick="document.getElementById('thumbFileInput').click()"
+                            class="border-2 border-dashed border-white/15 hover:border-neonRed/60 rounded-2xl p-5 text-center cursor-pointer transition bg-white/[0.02] hover:bg-neonRed/[0.04] group">
+                            <input type="file" id="thumbFileInput" accept="image/*" class="hidden" onchange="handleThumbnailFile(event)">
+                            <div class="w-12 h-12 rounded-2xl bg-neonRed/10 border border-neonRed/20 flex items-center justify-center mx-auto mb-2.5 text-neonRed group-hover:scale-110 transition">
+                                <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-zinc-200">Перетащите своё превью сюда или нажмите</p>
+                            <p class="text-xs text-zinc-400 mt-1">Поддерживаются PNG, JPG, WEBP (рекомендуется 1280×720)</p>
+                        </div>
+
+                        <!-- Быстрые стили демо-превью -->
+                        <div class="flex flex-wrap items-center gap-2 pt-1">
+                            <span class="text-xs text-zinc-400">Шаблоны:</span>
+                            <button onclick="generateDemoThumbnail('gaming')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-zinc-300 transition">🔥 Гейминг / Эдит</button>
+                            <button onclick="generateDemoThumbnail('tech')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-zinc-300 transition">⚡ Туториал AE</button>
+                            <button onclick="generateDemoThumbnail('challenge')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-zinc-300 transition">💎 100 часов монтажа</button>
+                        </div>
+                    </div>
+
+                    <!-- Поля метаданных ролика -->
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <h3 class="text-base font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-pen-nib text-neonPurple"></i>
+                            <span>Метаданные и проверка кликабельности</span>
+                        </h3>
+
+                        <!-- Название ролика -->
+                        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-medium text-zinc-300">Название видео</label>
+                                <span id="titleCharBadge" class="text-xs font-mono px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                                    48 / 70 симв. (Идеально)
+                                </span>
+                            </div>
+                            <textarea id="ytTitleInput" rows="2"
+                                oninput="updateThumbnailTester()"
+                                placeholder="Введите цепляющее название ролика..."
+                                class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 resize-none"></textarea>
+                            <!-- Полоса индикатора длины заголовка -->
+                            <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                                <div id="titleLengthBar" class="h-full bg-emerald-400 transition-all duration-200" style="width: 60%;"></div>
+                            </div>
+                            <p id="titleAdviceText" class="text-[11px] text-zinc-400">
+                                Зелёная зона (до 55 симв.) — заголовок виден целиком на всех устройствах.
+                            </p>
+                        </div>
+
+                        <!-- Канал и длительность -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1">Название канала</label>
+                                <input type="text" id="ytChannelInput" oninput="updateThumbnailTester()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3 py-2 text-sm text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1">Таймкод (длительность)</label>
+                                <input type="text" id="ytDurationInput" oninput="updateThumbnailTester()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3 py-2 text-sm font-mono text-white">
+                            </div>
+                        </div>
+
+                        <!-- Просмотры и дата -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1">Количество просмотров</label>
+                                <input type="text" id="ytViewsInput" oninput="updateThumbnailTester()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3 py-2 text-sm text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1">Время публикации</label>
+                                <input type="text" id="ytTimeAgoInput" oninput="updateThumbnailTester()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3 py-2 text-sm text-white">
+                            </div>
+                        </div>
+
+                        <!-- Переключатели слепых зон и темы -->
+                        <div class="pt-2 border-t border-white/10 space-y-2.5">
+                            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] cursor-pointer transition">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-shield-halved text-neonRed"></i>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white">Слепые зоны YouTube (Safe Zones)</div>
+                                        <div class="text-[11px] text-zinc-400">Таймкод 14:28 и кнопки «Смотреть позже / В очередь»</div>
+                                    </div>
+                                </div>
+                                <input type="checkbox" id="toggleSafeZones" checked onchange="updateThumbnailTester()" class="w-4 h-4 accent-neonRed rounded cursor-pointer">
+                            </label>
+
+                            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] cursor-pointer transition">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-border-all text-purple-400"></i>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white">Сетка композиции (Правило третей)</div>
+                                        <div class="text-[11px] text-zinc-400">Проверка фокуса внимания на лице или объекте</div>
+                                    </div>
+                                </div>
+                                <input type="checkbox" id="toggleGridZones" onchange="updateThumbnailTester()" class="w-4 h-4 accent-neonRed rounded cursor-pointer">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая панель: Предпросмотр в 3 реальных форматах (7 колонок) -->
+                <div class="lg:col-span-7 space-y-5">
+                    <!-- Панель управления темой превью YouTube -->
+                    <div class="studio-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-neonRed"></span>
+                            <span class="text-sm font-bold">Реалистичный предпросмотр (3 формата одновременно)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="ytThemeDarkBtn" onclick="setYoutubePreviewTheme('dark')"
+                                class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-neonRed text-white transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-moon"></i>
+                                <span>Тёмный YouTube</span>
+                            </button>
+                            <button id="ytThemeLightBtn" onclick="setYoutubePreviewTheme('light')"
+                                class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-zinc-300 hover:text-white transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-sun"></i>
+                                <span>Светлый YouTube</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер предпросмотра -->
+                    <div id="ytPreviewSurface" class="rounded-2xl p-5 sm:p-6 border border-white/10 bg-[#0f0f0f] text-white transition-colors duration-300 space-y-7">
+                        
+                        <!-- 1. ГЛАВНАЯ СТРАНИЦА YOUTUBE (ПК) -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between text-xs opacity-70 font-mono">
+                                <span><i class="fa-solid fa-desktop mr-1.5 text-neonRed"></i> 1. ГЛАВНАЯ СТРАНИЦА YOUTUBE (ПК — СЕТКА)</span>
+                                <span>360 × 202 px</span>
+                            </div>
+
+                            <div class="max-w-md mx-auto sm:mx-0">
+                                <!-- Превью 16:9 -->
+                                <div class="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-900 shadow-lg group select-none">
+                                    <img id="previewImgDesktop" src="" alt="Thumbnail Preview" class="w-full h-full object-cover">
+                                    
+                                    <!-- Сетка третей -->
+                                    <div id="gridOverlayDesktop" class="hidden absolute inset-0 rule-of-thirds-grid pointer-events-none"></div>
+
+                                    <!-- Слепые зоны YouTube -->
+                                    <div id="safeOverlayDesktop" class="absolute inset-0 pointer-events-none">
+                                        <!-- Иконки в правом верхнем углу -->
+                                        <div class="absolute top-2 right-2 flex flex-col gap-1.5">
+                                            <div class="w-7 h-7 rounded-md bg-black/85 text-white flex items-center justify-center text-xs shadow-md ring-1 ring-neonRed/60" title="Слепая зона: Смотреть позже">
+                                                <i class="fa-regular fa-clock"></i>
+                                            </div>
+                                            <div class="w-7 h-7 rounded-md bg-black/85 text-white flex items-center justify-center text-xs shadow-md ring-1 ring-neonRed/60" title="Слепая зона: Добавить в очередь">
+                                                <i class="fa-solid fa-bars-staggered"></i>
+                                            </div>
+                                        </div>
+                                        <!-- Подсветка опасной зоны справа внизу -->
+                                        <div class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-black/90 text-white font-sans font-semibold text-xs tracking-wide ring-1 ring-neonRed/70">
+                                            <span class="yt-duration-text">14:28</span>
+                                        </div>
+                                        <!-- Полоса прогресса внизу -->
+                                        <div class="absolute bottom-0 inset-x-0 h-1 bg-white/25">
+                                            <div class="w-1/3 h-full bg-[#ff0033]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Подпись под превью ПК -->
+                                <div class="flex gap-3 mt-3">
+                                    <div class="w-9 h-9 rounded-full bg-gradient-to-br from-neonRed to-neonPurple flex items-center justify-center text-white font-bold text-sm shrink-0 mt-0.5">
+                                        S
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <h4 class="yt-title-text font-semibold text-[15px] leading-snug yt-line-clamp-2"></h4>
+                                        <div class="yt-subtext text-xs opacity-70 mt-1 flex items-center gap-1">
+                                            <span class="yt-channel-text font-medium">sanskrutoy</span>
+                                            <i class="fa-solid fa-circle-check text-[10px]"></i>
+                                        </div>
+                                        <div class="yt-subtext text-xs opacity-70">
+                                            <span class="yt-views-text">148 тыс. просмотров</span> • <span class="yt-time-text">2 часа назад</span>
+                                        </div>
+                                    </div>
+                                    <div class="opacity-60 pt-1">
+                                        <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- РАЗДЕЛИТЕЛЬ -->
+                        <div class="border-t border-current opacity-10"></div>
+
+                        <!-- 2. МОБИЛЬНАЯ ЛЕНТА СМАРТФОНА & 3. БОКОВАЯ ПАНЕЛЬ (РЕКОМЕНДАЦИИ) -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            
+                            <!-- 2. МОБИЛЬНАЯ ЛЕНТА (6 колонок) -->
+                            <div class="md:col-span-6 space-y-2.5">
+                                <div class="flex items-center justify-between text-xs opacity-70 font-mono">
+                                    <span><i class="fa-solid fa-mobile-screen-button mr-1.5 text-neonPurple"></i> 2. МОБИЛЬНАЯ ЛЕНТА</span>
+                                    <span>Смартфон</span>
+                                </div>
+
+                                <div class="rounded-2xl border border-current/15 overflow-hidden shadow-md">
+                                    <div class="relative aspect-video w-full bg-zinc-900">
+                                        <img id="previewImgMobile" src="" alt="Mobile Preview" class="w-full h-full object-cover">
+                                        <div id="gridOverlayMobile" class="hidden absolute inset-0 rule-of-thirds-grid pointer-events-none"></div>
+                                        <div id="safeOverlayMobile" class="absolute inset-0 pointer-events-none">
+                                            <div class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-black/90 text-white font-sans font-semibold text-[11px] ring-1 ring-neonRed/70">
+                                                <span class="yt-duration-text">14:28</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 flex gap-2.5">
+                                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-neonRed to-neonPurple flex items-center justify-center text-white font-bold text-xs shrink-0">
+                                            S
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <h4 class="yt-title-text font-semibold text-xs leading-snug yt-line-clamp-2"></h4>
+                                            <div class="text-[11px] opacity-70 mt-0.5 truncate">
+                                                <span class="yt-channel-text">sanskrutoy</span> • <span class="yt-views-text">148 тыс. просмотров</span> • <span class="yt-time-text">2 часа назад</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. БОКОВАЯ ПАНЕЛЬ / РЕКОМЕНДАЦИИ (6 колонок) -->
+                            <div class="md:col-span-6 space-y-2.5">
+                                <div class="flex items-center justify-between text-xs opacity-70 font-mono">
+                                    <span><i class="fa-solid fa-table-list mr-1.5 text-emerald-400"></i> 3. БОКОВАЯ ПАНЕЛЬ</span>
+                                    <span>168 × 94 px</span>
+                                </div>
+
+                                <div class="p-2.5 rounded-xl border border-current/10 flex gap-2.5 items-start">
+                                    <!-- Мини-превью -->
+                                    <div class="relative w-40 aspect-video rounded-lg overflow-hidden bg-zinc-900 shrink-0">
+                                        <img id="previewImgSidebar" src="" alt="Sidebar Preview" class="w-full h-full object-cover">
+                                        <div id="gridOverlaySidebar" class="hidden absolute inset-0 rule-of-thirds-grid pointer-events-none"></div>
+                                        <div id="safeOverlaySidebar" class="absolute inset-0 pointer-events-none">
+                                            <div class="absolute top-1 right-1 w-5 h-5 rounded bg-black/85 text-white flex items-center justify-center text-[9px] ring-1 ring-neonRed/60">
+                                                <i class="fa-regular fa-clock"></i>
+                                            </div>
+                                            <div class="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/90 text-white font-sans font-semibold text-[10px] ring-1 ring-neonRed/70">
+                                                <span class="yt-duration-text">14:28</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Текст справа -->
+                                    <div class="min-w-0 flex-1">
+                                        <h4 class="yt-title-text font-semibold text-xs leading-snug yt-line-clamp-2"></h4>
+                                        <div class="text-[11px] opacity-70 mt-1 flex items-center gap-1">
+                                            <span class="yt-channel-text truncate">sanskrutoy</span>
+                                            <i class="fa-solid fa-circle-check text-[9px]"></i>
+                                        </div>
+                                        <div class="text-[11px] opacity-70 truncate">
+                                            <span class="yt-views-text">148 тыс.</span> • <span class="yt-time-text">2 ч. назад</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-neonRed/10 border border-neonRed/20 text-xs text-zinc-300">
+                                    <i class="fa-solid fa-lightbulb text-neonRed mr-1"></i>
+                                    <strong>Совет:</strong> Если текст на превью легко читается даже в миниатюре «Боковая панель», ваш CTR будет значительно выше!
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             ВКЛАДКА 2: КАЛЬКУЛЯТОР МОНТАЖА И БИТ-СИНХА (AE / PREMIERE / OBS)
+             ===================================================================== -->
+        <section id="tab-bpm" class="tab-panel hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Левая колонка: Настройки BPM, FPS и Tap Tempo (5 колонок) -->
+                <div class="lg:col-span-5 space-y-5">
+                    
+                    <!-- Калькулятор BPM и FPS -->
+                    <div class="studio-card rounded-2xl p-5 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-sliders text-neonRed"></i>
+                                <span>Параметры трека и секвенции</span>
+                            </h2>
+                            <span class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-neonPurple/20 text-purple-300 border border-neonPurple/40">
+                                AE / Premiere Pro
+                            </span>
+                        </div>
+
+                        <!-- Ползунок и ввод BPM -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-medium text-zinc-300">Темп музыки (BPM)</label>
+                                <div class="flex items-center gap-1.5">
+                                    <input type="number" id="bpmNumberInput" min="60" max="220" value="140"
+                                        oninput="syncBpmInputs(this.value)"
+                                        class="w-20 text-center font-mono font-bold text-base rounded-xl bg-[#0f0f13] border border-neonRed/50 text-white py-1 px-2 focus:outline-none">
+                                    <span class="text-xs font-mono text-zinc-400">BPM</span>
+                                </div>
+                            </div>
+                            <input type="range" id="bpmRangeInput" min="60" max="220" value="140"
+                                oninput="syncBpmInputs(this.value)" class="w-full">
+                            
+                            <!-- Быстрые пресеты BPM -->
+                            <div class="flex items-center justify-between pt-1">
+                                <span class="text-xs text-zinc-400">Быстрые пресеты:</span>
+                                <div class="flex gap-1.5">
+                                    <button onclick="syncBpmInputs(120)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs font-mono transition">120</button>
+                                    <button onclick="syncBpmInputs(140)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs font-mono transition">140</button>
+                                    <button onclick="syncBpmInputs(165)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs font-mono transition">165</button>
+                                    <button onclick="syncBpmInputs(180)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs font-mono transition">180</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Выбор FPS проекта -->
+                        <div class="space-y-2 pt-2 border-t border-white/10">
+                            <label class="block text-xs font-medium text-zinc-300">Частота кадров проекта (FPS)</label>
+                            <div class="grid grid-cols-4 gap-2" id="fpsButtonsGroup">
+                                <button onclick="setProjectFps(24)" data-fps="24" class="fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-white/5 border border-white/10 text-zinc-300 transition">24 FPS</button>
+                                <button onclick="setProjectFps(25)" data-fps="25" class="fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-white/5 border border-white/10 text-zinc-300 transition">25 FPS</button>
+                                <button onclick="setProjectFps(30)" data-fps="30" class="fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-white/5 border border-white/10 text-zinc-300 transition">30 FPS</button>
+                                <button onclick="setProjectFps(60)" data-fps="60" class="fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-neonRed text-white border border-neonRed shadow-lg shadow-neonRed/25 transition">60 FPS</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Визуальный метроном / Tap Tempo -->
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-base font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-drum text-neonPurple"></i>
+                                    <span>Настучать ритм (Tap Tempo)</span>
+                                </h3>
+                                <p class="text-xs text-zinc-400">Кликайте в такт треку или нажимайте клавишу <kbd class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-white">Space</kbd></p>
+                            </div>
+                            <button onclick="resetTapTempo()" class="text-xs text-zinc-400 hover:text-white underline">Сброс</button>
+                        </div>
+
+                        <button id="tapTempoBtn" onclick="registerTap()"
+                            class="w-full py-6 rounded-2xl bg-gradient-to-br from-neonRed/20 via-neonPurple/20 to-neonRed/10 hover:from-neonRed/30 hover:to-neonPurple/30 border-2 border-neonRed/50 flex flex-col items-center justify-center gap-1.5 transition select-none">
+                            <span class="text-2xl sm:text-3xl font-extrabold font-mono text-white" id="tapBpmDisplay">НАСТУЧАТЬ БИТ</span>
+                            <span class="text-xs text-zinc-300" id="tapStatusSubtext">Сделайте минимум 4 клика под музыку</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Правая колонка: Таблица кадров бит-синха и Калькулятор битрейта OBS (7 колонок) -->
+                <div class="lg:col-span-7 space-y-5">
+                    
+                    <!-- Таблица расчёта кадров для After Effects / Premiere Pro -->
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-film text-neonRed"></i>
+                                    <span>Таблица синхронизации кадров под бит</span>
+                                </h2>
+                                <p class="text-xs text-zinc-400">Используйте шаг в кадрах для расстановки маркеров <kbd class="px-1 py-0.5 rounded bg-white/10 font-mono">*</kbd>, склеек и шейков</p>
+                            </div>
+                            <button onclick="copyAeExpression()"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-neonPurple/20 hover:bg-neonPurple/30 text-purple-200 border border-neonPurple/40 transition">
+                                <i class="fa-solid fa-code"></i>
+                                <span>Скопировать Expression для AE</span>
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-white/10 text-[11px] font-mono uppercase text-zinc-400">
+                                        <th class="py-2.5 px-3">Интервал ритма</th>
+                                        <th class="py-2.5 px-3">Шаг для монтажа</th>
+                                        <th class="py-2.5 px-3">Точные кадры</th>
+                                        <th class="py-2.5 px-3">Миллисекунды</th>
+                                        <th class="py-2.5 px-3">Применение</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bpmTableBody" class="divide-y divide-white/5 text-sm">
+                                    <!-- Заполняется через JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Калькулятор веса записи и битрейта (OBS / Рендер) -->
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-hard-drive text-emerald-400"></i>
+                                <span>Калькулятор веса записи и битрейта (OBS / Premiere)</span>
+                            </h3>
+                            <div class="flex gap-1.5">
+                                <button onclick="applyBitratePreset(16, 25)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-mono text-zinc-300 transition">1080p60 (25 Mbps)</button>
+                                <button onclick="applyBitratePreset(20, 45)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-mono text-zinc-300 transition">1440p60 (45 Mbps)</button>
+                                <button onclick="applyBitratePreset(30, 65)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-mono text-zinc-300 transition">CQP 18 High</button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1.5">Длительность записи / ролика (минут)</label>
+                                <input type="number" id="obsDurationInput" min="1" max="1440" value="20" oninput="calculateObsStorage()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2 text-sm font-mono text-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1.5">Битрейт видео (Mbps / Мбит/с)</label>
+                                <input type="number" id="obsBitrateInput" min="1" max="300" value="35" oninput="calculateObsStorage()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2 text-sm font-mono text-white">
+                            </div>
+                        </div>
+
+                        <!-- Итоги расчёта веса файла -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                            <div class="p-3.5 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-xs text-zinc-400">Итоговый размер файла</div>
+                                <div id="obsResultGb" class="text-xl font-extrabold font-mono text-neonRed mt-0.5">5.25 ГБ</div>
+                                <div id="obsResultMb" class="text-[11px] font-mono text-zinc-400">5 376 МБ (с аудио 320 kbps)</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-xs text-zinc-400">Расход диска в минуту</div>
+                                <div id="obsPerMinMb" class="text-xl font-extrabold font-mono text-white mt-0.5">262.5 МБ/мин</div>
+                                <div class="text-[11px] text-zinc-400">Скорость потока: <span id="obsSpeedMBs" class="font-mono text-zinc-200">4.38 МБ/с</span></div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-xs text-zinc-400">Рекомендация OBS / NVENC</div>
+                                <div class="text-xs font-semibold text-emerald-400 mt-1">1080p60: CQP 18 (22–30 Mbps)</div>
+                                <div class="text-xs font-semibold text-purple-400 mt-0.5">1440p60: CQP 18 (40–55 Mbps)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             ВКЛАДКА 3: ГЕНЕРАТОР ТАЙМКОДОВ И ДИКТОРСКИЙ ТАЙМЕР
+             ===================================================================== -->
+        <section id="tab-chapters" class="tab-panel hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Левая часть: Конструктор таймкодов (эпизодов) YouTube (6 колонок) -->
+                <div class="lg:col-span-6 space-y-5">
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-neonRed"></i>
+                                    <span>Конструктор таймкодов YouTube</span>
+                                </h2>
+                                <p class="text-xs text-zinc-400">Автопроверка правил YouTube для отображения глав на таймлайне</p>
+                            </div>
+                            <button onclick="sortChaptersByTime()"
+                                class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-zinc-200 transition">
+                                <i class="fa-solid fa-arrow-down-short-wide mr-1 text-neonPurple"></i> Сортировать по времени
+                            </button>
+                        </div>
+
+                        <!-- Индикаторы соблюдения 3 правил YouTube -->
+                        <div id="chaptersValidationBox" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <!-- Заполняется динамически -->
+                        </div>
+
+                        <!-- Форма добавления новой главы -->
+                        <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                            <input type="text" id="newChapterTime" placeholder="03:45" maxlength="8"
+                                class="sm:w-28 rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2.5 text-sm font-mono text-white">
+                            <input type="text" id="newChapterTitle" placeholder="Название эпизода (например: Настройка шейков в AE)"
+                                onkeydown="if(event.key==='Enter') addChapter()"
+                                class="flex-1 rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2.5 text-sm text-white">
+                            <button onclick="addChapter()"
+                                class="px-4 py-2.5 rounded-xl bg-neonRed hover:bg-neonRed/90 text-white font-semibold text-sm transition shrink-0">
+                                <i class="fa-solid fa-plus mr-1"></i> Добавить
+                            </button>
+                        </div>
+
+                        <!-- Список таймкодов -->
+                        <div id="chaptersListContainer" class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                            <!-- Генерируется в JS -->
+                        </div>
+
+                        <!-- Итоговое поле и кнопка копирования -->
+                        <div class="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                            <span class="text-xs text-zinc-400">Готовый блок для вставки в описание ролика:</span>
+                            <button onclick="copyChaptersToClipboard()"
+                                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-gradient-to-r from-neonRed to-neonPurple text-white shadow-lg shadow-neonRed/25 hover:opacity-95 transition">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Скопировать готовые таймкоды для YouTube</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая часть: Калькулятор хронометража озвучки + секундомер диктора (6 колонок) -->
+                <div class="lg:col-span-6 space-y-5">
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-microphone-lines text-neonPurple"></i>
+                                    <span>Хронометраж сценария и Суфлёр</span>
+                                </h2>
+                                <p class="text-xs text-zinc-400">Точный расчёт длительности начитки + секундомер для дублей</p>
+                            </div>
+                            <button onclick="loadSampleScript()" class="text-xs text-neonRed hover:underline">Демо-текст</button>
+                        </div>
+
+                        <!-- Поле сценария -->
+                        <textarea id="voiceScriptInput" rows="7"
+                            oninput="calculateVoiceoverTiming()"
+                            placeholder="Вставьте сюда текст вашего сценария или озвучки..."
+                            class="w-full rounded-2xl bg-[#0f0f13] border border-white/10 focus:border-neonPurple focus:outline-none p-4 text-sm sm:text-base leading-relaxed text-zinc-100 placeholder-zinc-500 resize-y"></textarea>
+
+                        <!-- Карточки темпа чтения -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                            <div class="p-3 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-[11px] text-zinc-400">Слов / Символов</div>
+                                <div class="text-base font-bold font-mono text-white mt-0.5">
+                                    <span id="scriptWordCount">0</span> <span class="text-xs text-zinc-400 font-normal">сл.</span>
+                                </div>
+                                <div id="scriptCharCount" class="text-[11px] font-mono text-zinc-400">0 симв.</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-[11px] text-zinc-400">Медленный (105 сл/м)</div>
+                                <div id="timeSlow" class="text-base font-bold font-mono text-zinc-200 mt-0.5">00:00</div>
+                                <div class="text-[10px] text-zinc-400">Вдумчивый рассказ</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-neonRed/10 border border-neonRed/30">
+                                <div class="text-[11px] text-neonRed font-semibold">Средний (130 сл/м)</div>
+                                <div id="timeMedium" class="text-base font-extrabold font-mono text-white mt-0.5">00:00</div>
+                                <div class="text-[10px] text-zinc-300">Золотой стандарт YT</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-[#0f0f13] border border-white/10">
+                                <div class="text-[11px] text-zinc-400">Быстрый (160 сл/м)</div>
+                                <div id="timeFast" class="text-base font-bold font-mono text-purple-300 mt-0.5">00:00</div>
+                                <div class="text-[10px] text-zinc-400">Динамичный / Shorts</div>
+                            </div>
+                        </div>
+
+                        <!-- Встроенный секундомер для записи дублей -->
+                        <div class="p-4 rounded-2xl bg-[#0f0f13] border border-white/10 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-neonRed/15 text-neonRed flex items-center justify-center">
+                                    <i class="fa-solid fa-stopwatch text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-zinc-400">Таймер записи дубля (OBS / Audition)</div>
+                                    <div id="stopwatchDisplay" class="text-2xl font-mono font-extrabold text-white tracking-wider">00:00.0</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button id="stopwatchStartBtn" onclick="toggleStopwatch()"
+                                    class="px-4 py-2 rounded-xl font-semibold text-xs bg-emerald-500 hover:bg-emerald-600 text-white transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Старт</span>
+                                </button>
+                                <button onclick="markTakeLap()"
+                                    class="px-3 py-2 rounded-xl font-semibold text-xs bg-white/10 hover:bg-white/15 text-white transition">
+                                    Дубль
+                                </button>
+                                <button onclick="resetStopwatch()"
+                                    class="px-3 py-2 rounded-xl font-semibold text-xs bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition">
+                                    Сброс
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Список записанных дублей -->
+                        <div id="takesHistoryBox" class="hidden flex-wrap gap-2 pt-1"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             ВКЛАДКА 4: ТРЕКЕР ПРОДАКШЕНА ВИДЕО (KANBAN & ЧЕК-ЛИСТ ЮТУБЕРА)
+             ===================================================================== -->
+        <section id="tab-kanban" class="tab-panel hidden space-y-6">
+            
+            <!-- Верхняя панель добавления нового ролика на Канбан-доску -->
+            <div class="studio-card rounded-2xl p-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-clapperboard text-neonRed"></i>
+                        <span>Канбан-доска продакшена роликов</span>
+                    </h2>
+                    <p class="text-xs text-zinc-400">Управляйте этапами создания видео — все карточки автоматически сохраняются в браузере</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                    <input type="text" id="newKanbanTitle" placeholder="Название нового видео или идеи..."
+                        onkeydown="if(event.key==='Enter') addKanbanCard()"
+                        class="sm:w-64 rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3.5 py-2 text-sm text-white">
+                    <select id="newKanbanBadge"
+                        class="rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none px-3 py-2 text-xs font-semibold text-zinc-200">
+                        <option value="Долгое видео">🎬 Долгое видео</option>
+                        <option value="Эдит / Монтаж">⚡ Эдит / Монтаж</option>
+                        <option value="YouTube Shorts">📱 YouTube Shorts</option>
+                        <option value="Туториал">🎓 Туториал</option>
+                    </select>
+                    <button onclick="addKanbanCard()"
+                        class="px-4 py-2 rounded-xl bg-gradient-to-r from-neonRed to-neonPurple text-white font-semibold text-xs sm:text-sm shadow-lg shadow-neonRed/20 hover:opacity-95 transition">
+                        <i class="fa-solid fa-plus mr-1"></i> Создать ролик
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4 колонки Канбан-доски -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="kanbanBoardContainer">
+                <!-- Генерируется через JS -->
+            </div>
+
+            <!-- Интерактивный чек-лист перед публикацией ролика -->
+            <div class="studio-card rounded-2xl p-5 sm:p-6 space-y-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-rocket text-neonPurple"></i>
+                            <span>Предрелизный чек-лист ютубера и монтажёра</span>
+                        </h3>
+                        <p class="text-xs text-zinc-400">Проверьте каждый пункт перед тем, как нажать «Опубликовать» в Творческой студии YouTube</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="checklistPercentBadge" class="px-3 py-1 rounded-xl font-mono font-bold text-sm bg-neonRed/15 text-neonRed border border-neonRed/30">
+                            0% готово
+                        </span>
+                        <button onclick="resetChecklist()" class="text-xs text-zinc-400 hover:text-white underline">Снять отметки</button>
+                    </div>
+                </div>
+
+                <!-- Прогресс-бар готовности релиза -->
+                <div class="w-full h-3 rounded-full bg-[#0f0f13] border border-white/10 overflow-hidden p-0.5">
+                    <div id="checklistProgressBar" class="h-full rounded-full bg-gradient-to-r from-neonRed via-neonPurple to-emerald-400 transition-all duration-300" style="width: 0%;"></div>
+                </div>
+
+                <!-- Пункты чек-листа -->
+                <div id="checklistItemsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <!-- Заполняется через JS -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="relative z-10 border-t border-white/10 bg-[#0f0f13]/90 py-5 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-neonRed"></span>
+                <span><strong>sanskrutoy Creator Hub</strong> — Все инструменты работают локально и мгновенно сохраняют ваш прогресс.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/sanskrutoy" target="_blank" rel="noopener noreferrer" class="hover:text-neonRed transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-github"></i>
+                    <span>github.com/sanskrutoy</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- СКРИТЫЙ ХОЛСТ ДЛЯ ГЕНЕРАЦИИ ПРОФЕССИОНАЛЬНОГО ДЕМО-ПРЕВЬЮ -->
+    <canvas id="demoThumbCanvas" width="1280" height="720" class="hidden"></canvas>
+
+    <!-- ЛОГИКА ПРИЛОЖЕНИЯ -->
+    <script>
+        /* =========================================================================
+           ГЛОБАЛЬНОЕ СОСТОЯНИЕ И СОХРАНЕНИЕ В LOCALSTORAGE
+           ========================================================================= */
+        const STORAGE_KEY = 'sanskrutoy_creator_hub_v2';
+
+        const defaultState = {
+            activeTab: 'tab-thumbnail',
+            thumbnail: {
+                title: 'Я МОНТИРОВАЛ ЭТОТ РОЛИК 100 ЧАСОВ! Секретные фишки в After Effects',
+                channel: 'sanskrutoy',
+                duration: '14:28',
+                views: '148 тыс. просмотров',
+                timeAgo: '2 часа назад',
+                safeZones: true,
+                gridZones: false,
+                ytTheme: 'dark',
+                customImageData: null,
+                demoPreset: 'gaming'
+            },
+            bpmTool: {
+                bpm: 140,
+                fps: 60,
+                obsDuration: 20,
+                obsBitrate: 35
+            },
+            chaptersTool: {
+                chapters: [
+                    { time: '00:00', title: 'Интро — почему этот тулкит сэкономит вам часы' },
+                    { time: '01:25', title: 'Разбор превью и слепых зон YouTube' },
+                    { time: '04:50', title: 'Синхронизация шейков и склеек под бит в After Effects' },
+                    { time: '09:15', title: 'Идеальные настройки рендера и OBS без потери качества' },
+                    { time: '12:40', title: 'Финальный результат и выводы' }
+                ],
+                script: 'Привет, бро! Сегодня я покажу тебе, как выстроить идеальный пайплайн для создания роликов на YouTube. Многие авторы тратят часы на рутину: гадают, не перекроет ли таймкод важный текст на превью, считают кадры для бит-синха вручную на калькуляторе и забывают добавить таймкоды с нулевой секунды. Давай разберёмся, как автоматизировать все эти процессы прямо в браузере и сфокусироваться на крутом монтаже!'
+            },
+            kanbanTool: {
+                cards: [
+                    { id: 'c1', title: 'Гайд по неоновым шейкам и переходу в AE', badge: 'Туториал', stage: 'idea' },
+                    { id: 'c2', title: 'Нарезка лучших моментов со стрима #14', badge: 'Долгое видео', stage: 'voice' },
+                    { id: 'c3', title: 'Динамичный бит-синх эдит под 165 BPM', badge: 'Эдит / Монтаж', stage: 'edit' },
+                    { id: 'c4', title: 'Как поднять CTR превью в 2 раза', badge: 'YouTube Shorts', stage: 'release' }
+                ],
+                checklist: {
+                    audioPeak: true,
+                    noBlackFrames: true,
+                    thumbSafeZone: true,
+                    chaptersZero: false,
+                    seoTags: false,
+                    endScreens: false
+                }
+            }
+        };
+
+        let appState = loadAppState();
+
+        function loadAppState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return JSON.parse(JSON.stringify(defaultState));
+                const parsed = JSON.parse(raw);
+                return {
+                    ...defaultState,
+                    ...parsed,
+                    thumbnail: { ...defaultState.thumbnail, ...(parsed.thumbnail || {}) },
+                    bpmTool: { ...defaultState.bpmTool, ...(parsed.bpmTool || {}) },
+                    chaptersTool: { ...defaultState.chaptersTool, ...(parsed.chaptersTool || {}) },
+                    kanbanTool: {
+                        ...defaultState.kanbanTool,
+                        ...(parsed.kanbanTool || {}),
+                        checklist: { ...defaultState.kanbanTool.checklist, ...((parsed.kanbanTool && parsed.kanbanTool.checklist) || {}) }
+                    }
+                };
+            } catch (e) {
+                return JSON.parse(JSON.stringify(defaultState));
+            }
+        }
+
+        function saveAppState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                // Если превышен лимит из-за тяжелой картинки, сохраняем без base64 картинки
+                const clone = JSON.parse(JSON.stringify(appState));
+                clone.thumbnail.customImageData = null;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(clone));
+            }
+        }
+
+        /* =========================================================================
+           СИСТЕМА УВЕДОМЛЕНИЙ (БЕЗ ALERT / CONFIRM)
+           ========================================================================= */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const iconClass = type === 'success' ? 'fa-circle-check text-emerald-400' :
+                              type === 'warn' ? 'fa-triangle-exclamation text-amber-400' : 'fa-bolt text-neonRed';
+
+            toast.className = 'pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#191922]/95 border border-white/15 shadow-2xl text-xs sm:text-sm text-white backdrop-blur-xl transition-all duration-300 translate-y-2 opacity-0';
+            toast.innerHTML = `
+                <i class="fa-solid ${iconClass} text-base shrink-0"></i>
+                <span class="font-medium leading-snug">${message}</span>
+            `;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function copyTextFallback(text, successMsg) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg, 'success');
+            } catch (err) {
+                showToast('Не удалось скопировать текст', 'warn');
+            }
+            document.body.removeChild(ta);
+        }
+
+        /* =========================================================================
+           ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+           ========================================================================= */
+        function switchTab(tabId) {
+            const tabs = ['tab-thumbnail', 'tab-bpm', 'tab-chapters', 'tab-kanban'];
+            tabs.forEach(id => {
+                const section = document.getElementById(id);
+                const btn = document.getElementById('btn-' + id);
+                if (id === tabId) {
+                    section.classList.remove('hidden');
+                    btn.classList.add('active');
+                } else {
+                    section.classList.add('hidden');
+                    btn.classList.remove('active');
+                }
+            });
+            appState.activeTab = tabId;
+            saveAppState();
+        }
+
+        /* =========================================================================
+           ИНСТРУМЕНТ 1: ТЕСТЕР ПРЕВЬЮ И НАЗВАНИЙ YOUTUBE
+           ========================================================================= */
+        function initThumbnailTester() {
+            document.getElementById('ytTitleInput').value = appState.thumbnail.title;
+            document.getElementById('ytChannelInput').value = appState.thumbnail.channel;
+            document.getElementById('ytDurationInput').value = appState.thumbnail.duration;
+            document.getElementById('ytViewsInput').value = appState.thumbnail.views;
+            document.getElementById('ytTimeAgoInput').value = appState.thumbnail.timeAgo;
+            document.getElementById('toggleSafeZones').checked = appState.thumbnail.safeZones;
+            document.getElementById('toggleGridZones').checked = appState.thumbnail.gridZones;
+
+            if (appState.thumbnail.customImageData) {
+                applyPreviewImageSrc(appState.thumbnail.customImageData);
+            } else {
+                generateDemoThumbnail(appState.thumbnail.demoPreset || 'gaming', false);
+            }
+
+            setYoutubePreviewTheme(appState.thumbnail.ytTheme || 'dark', false);
+            updateThumbnailTester(false);
+
+            // Drag & Drop обработчики
+            const dropZone = document.getElementById('dropZone');
+            ['dragenter', 'dragover'].forEach(evt => {
+                dropZone.addEventListener(evt, e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropZone.classList.add('border-neonRed', 'bg-neonRed/10');
+                });
+            });
+            ['dragleave', 'drop'].forEach(evt => {
+                dropZone.addEventListener(evt, e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropZone.classList.remove('border-neonRed', 'bg-neonRed/10');
+                });
+            });
+            dropZone.addEventListener('drop', e => {
+                const file = e.dataTransfer.files && e.dataTransfer.files[0];
+                if (file) readImageFile(file);
+            });
+        }
+
+        function handleThumbnailFile(event) {
+            const file = event.target.files && event.target.files[0];
+            if (file) readImageFile(file);
+        }
+
+        function readImageFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showToast('Пожалуйста, выберите файл изображения (PNG, JPG, WEBP)', 'warn');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const dataUrl = evt.target.result;
+                appState.thumbnail.customImageData = dataUrl;
+                applyPreviewImageSrc(dataUrl);
+                saveAppState();
+                showToast('Своё превью успешно загружено во все 3 макета!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function applyPreviewImageSrc(src) {
+            document.getElementById('previewImgDesktop').src = src;
+            document.getElementById('previewImgMobile').src = src;
+            document.getElementById('previewImgSidebar').src = src;
+        }
+
+        // Генерация стильного демо-превью на HTML5 Canvas
+        function generateDemoThumbnail(preset = null, notify = true) {
+            const presets = ['gaming', 'tech', 'challenge'];
+            const chosen = preset || presets[Math.floor(Math.random() * presets.length)];
+            appState.thumbnail.demoPreset = chosen;
+            appState.thumbnail.customImageData = null;
+
+            const canvas = document.getElementById('demoThumbCanvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            // Градиентный фон в зависимости от шаблона
+            const grad = ctx.createLinearGradient(0, 0, w, h);
+            if (chosen === 'gaming') {
+                grad.addColorStop(0, '#0f0c20');
+                grad.addColorStop(0.5, '#2b0938');
+                grad.addColorStop(1, '#ff2a5f');
+            } else if (chosen === 'tech') {
+                grad.addColorStop(0, '#09111e');
+                grad.addColorStop(0.55, '#1e1b4b');
+                grad.addColorStop(1, '#7c3aed');
+            } else {
+                grad.addColorStop(0, '#140b1c');
+                grad.addColorStop(0.5, '#4c0519');
+                grad.addColorStop(1, '#f59e0b');
+            }
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, w, h);
+
+            // Кибер-сетка на фоне
+            ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+            ctx.lineWidth = 2;
+            for (let x = 0; x < w; x += 80) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+            }
+            for (let y = 0; y < h; y += 80) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+            }
+
+            // Декоративное неоновое кольцо справа
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(w * 0.77, h * 0.52, 210, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 42, 95, 0.22)';
+            ctx.fill();
+            ctx.lineWidth = 10;
+            ctx.strokeStyle = '#ff2a5f';
+            ctx.stroke();
+            ctx.restore();
+
+            // Плашка сверху слева
+            ctx.fillStyle = '#ff2a5f';
+            ctx.beginPath();
+            ctx.roundRect(70, 75, 410, 68, 18);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 34px Inter, sans-serif';
+            ctx.fillText('SANSKRUTOY STUDIO', 100, 121);
+
+            // Крупный кликабельный текст на превью
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = 'rgba(0,0,0,0.65)';
+            ctx.shadowBlur = 24;
+            ctx.font = '900 104px Inter, sans-serif';
+            if (chosen === 'gaming') {
+                ctx.fillText('100 ЧАСОВ', 70, 310);
+                ctx.fillStyle = '#fde047';
+                ctx.fillText('МОНТАЖА!', 70, 430);
+            } else if (chosen === 'tech') {
+                ctx.fillText('СЕКРЕТНЫЙ', 70, 310);
+                ctx.fillStyle = '#38bdf8';
+                ctx.fillText('БИТ-СИНХ AE', 70, 430);
+            } else {
+                ctx.fillText('CTR +250%', 70, 310);
+                ctx.fillStyle = '#4ade80';
+                ctx.fillText('ТЕСТ ПРЕВЬЮ', 70, 430);
+            }
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = 'rgba(255,255,255,0.85)';
+            ctx.font = '600 36px JetBrains Mono, monospace';
+            ctx.fillText('Проверка слепых зон 16:9 →', 70, 540);
+
+            // Иконка-акцент в круге справа
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 110px Inter, sans-serif';
+            ctx.fillText('⚡', w * 0.72, h * 0.58);
+
+            const url = canvas.toDataURL('image/png');
+            applyPreviewImageSrc(url);
+            saveAppState();
+            if (notify) showToast('Сгенерировано новое демо-превью!', 'info');
+        }
+
+        function updateThumbnailTester(save = true) {
+            const title = document.getElementById('ytTitleInput').value;
+            const channel = document.getElementById('ytChannelInput').value || 'sanskrutoy';
+            const duration = document.getElementById('ytDurationInput').value || '14:28';
+            const views = document.getElementById('ytViewsInput').value || '148 тыс. просмотров';
+            const timeAgo = document.getElementById('ytTimeAgoInput').value || '2 часа назад';
+            const safeZones = document.getElementById('toggleSafeZones').checked;
+            const gridZones = document.getElementById('toggleGridZones').checked;
+
+            // Обновляем счётчик длины названия и индикатор (зелёный <=55, жёлтый 55-70, красный >70)
+            const len = title.length;
+            const badge = document.getElementById('titleCharBadge');
+            const bar = document.getElementById('titleLengthBar');
+            const advice = document.getElementById('titleAdviceText');
+            const pct = Math.min(100, Math.round((len / 85) * 100));
+            bar.style.width = pct + '%';
+
+            if (len <= 55) {
+                badge.className = 'text-xs font-mono px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30';
+                badge.textContent = `${len} / 70 симв. (Отлично)`;
+                bar.className = 'h-full bg-emerald-400 transition-all duration-200';
+                advice.textContent = 'Зелёная зона (до 55 симв.): название гарантированно читается без обрезки на ПК и смартфонах.';
+                advice.className = 'text-[11px] text-emerald-400';
+            } else if (len <= 70) {
+                badge.className = 'text-xs font-mono px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/30';
+                badge.textContent = `${len} / 70 симв. (Внимание)`;
+                bar.className = 'h-full bg-amber-400 transition-all duration-200';
+                advice.textContent = 'Жёлтая зона (55–70 симв.): на узких экранах и в рекомендациях конец заголовка может скрыться.';
+                advice.className = 'text-[11px] text-amber-400';
+            } else {
+                badge.className = 'text-xs font-mono px-2 py-0.5 rounded-md bg-neonRed/20 text-neonRed border border-neonRed/40';
+                badge.textContent = `${len} / 70 симв. (Обрезка «...»)`;
+                bar.className = 'h-full bg-neonRed transition-all duration-200';
+                advice.textContent = 'Красная зона (>70 симв.): YouTube обрежет название троеточием «...»! Перенесите главные слова в начало.';
+                advice.className = 'text-[11px] text-neonRed font-medium';
+            }
+
+            // Если длина > 70, показываем реалистичную обрезку в предпросмотре
+            const displayTitle = len > 70 ? title.slice(0, 68).trim() + '...' : (title || 'Без названия');
+
+            document.querySelectorAll('.yt-title-text').forEach(el => el.textContent = displayTitle);
+            document.querySelectorAll('.yt-channel-text').forEach(el => el.textContent = channel);
+            document.querySelectorAll('.yt-duration-text').forEach(el => el.textContent = duration);
+            document.querySelectorAll('.yt-views-text').forEach(el => el.textContent = views);
+            document.querySelectorAll('.yt-time-text').forEach(el => el.textContent = timeAgo);
+
+            // Слепые зоны
+            ['safeOverlayDesktop', 'safeOverlayMobile', 'safeOverlaySidebar'].forEach(id => {
+                document.getElementById(id).classList.toggle('hidden', !safeZones);
+            });
+            // Сетка третей
+            ['gridOverlayDesktop', 'gridOverlayMobile', 'gridOverlaySidebar'].forEach(id => {
+                document.getElementById(id).classList.toggle('hidden', !gridZones);
+            });
+
+            appState.thumbnail.title = title;
+            appState.thumbnail.channel = channel;
+            appState.thumbnail.duration = duration;
+            appState.thumbnail.views = views;
+            appState.thumbnail.timeAgo = timeAgo;
+            appState.thumbnail.safeZones = safeZones;
+            appState.thumbnail.gridZones = gridZones;
+            if (save) saveAppState();
+        }
+
+        function setYoutubePreviewTheme(theme, save = true) {
+            const surface = document.getElementById('ytPreviewSurface');
+            const darkBtn = document.getElementById('ytThemeDarkBtn');
+            const lightBtn = document.getElementById('ytThemeLightBtn');
+
+            if (theme === 'light') {
+                surface.classList.remove('bg-[#0f0f0f]', 'text-white');
+                surface.classList.add('bg-white', 'text-zinc-900');
+                lightBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-neonRed text-white transition flex items-center gap-1.5';
+                darkBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-zinc-300 hover:text-white transition flex items-center gap-1.5';
+            } else {
+                surface.classList.add('bg-[#0f0f0f]', 'text-white');
+                surface.classList.remove('bg-white', 'text-zinc-900');
+                darkBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-neonRed text-white transition flex items-center gap-1.5';
+                lightBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 text-zinc-300 hover:text-white transition flex items-center gap-1.5';
+            }
+
+            appState.thumbnail.ytTheme = theme;
+            if (save) saveAppState();
+        }
+
+        /* =========================================================================
+           ИНСТРУМЕНТ 2: КАЛЬКУЛЯТОР МОНТАЖА И БИТ-СИНХА (AE / PREMIERE / OBS)
+           ========================================================================= */
+        let tapTimestamps = [];
+
+        function initBpmToolkit() {
+            document.getElementById('bpmNumberInput').value = appState.bpmTool.bpm;
+            document.getElementById('bpmRangeInput').value = appState.bpmTool.bpm;
+            document.getElementById('obsDurationInput').value = appState.bpmTool.obsDuration;
+            document.getElementById('obsBitrateInput').value = appState.bpmTool.obsBitrate;
+
+            setProjectFps(appState.bpmTool.fps || 60, false);
+            calculateObsStorage(false);
+
+            // Поддержка клавиши Пробел для настукивания ритма, когда открыта вкладка бит-синха
+            window.addEventListener('keydown', (e) => {
+                if (appState.activeTab === 'tab-bpm' && e.code === 'Space') {
+                    const tag = document.activeElement ? document.activeElement.tagName : '';
+                    if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                        e.preventDefault();
+                        registerTap();
+                    }
+                }
+            });
+        }
+
+        function syncBpmInputs(val) {
+            let num = parseInt(val, 10);
+            if (isNaN(num)) num = 120;
+            num = Math.max(40, Math.min(260, num));
+            document.getElementById('bpmNumberInput').value = num;
+            document.getElementById('bpmRangeInput').value = Math.max(60, Math.min(220, num));
+            appState.bpmTool.bpm = num;
+            renderBpmTable();
+            saveAppState();
+        }
+
+        function setProjectFps(fps, save = true) {
+            appState.bpmTool.fps = fps;
+            document.querySelectorAll('.fps-btn').forEach(btn => {
+                const btnFps = parseInt(btn.getAttribute('data-fps'), 10);
+                if (btnFps === fps) {
+                    btn.className = 'fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-neonRed text-white border border-neonRed shadow-lg shadow-neonRed/25 transition';
+                } else {
+                    btn.className = 'fps-btn py-2 rounded-xl font-mono text-xs font-semibold bg-white/5 border border-white/10 text-zinc-300 hover:bg-white/10 transition';
+                }
+            });
+            renderBpmTable();
+            if (save) saveAppState();
+        }
+
+        function renderBpmTable() {
+            const bpm = appState.bpmTool.bpm || 140;
+            const fps = appState.bpmTool.fps || 60;
+            const secPerBeat = 60 / bpm;
+
+            const intervals = [
+                { label: '1/4 удара (1/16 такта)', mult: 0.25, badge: 'Глитч / Строб / Фликер', accent: 'text-zinc-300' },
+                { label: '1/2 удара (1/8 такта)', mult: 0.5, badge: 'Быстрая нарезка / Velocity', accent: 'text-purple-300' },
+                { label: '1 удар (1 Beat)', mult: 1, badge: 'Основной бит / Шейк (Shake)', accent: 'text-neonRed font-bold' },
+                { label: 'Полтакта (2 Beats)', mult: 2, badge: 'Смена кадра / Панч', accent: 'text-emerald-300' },
+                { label: 'Целый такт (1 Bar / 4 Beats)', mult: 4, badge: 'Крупный переход / Дроп', accent: 'text-amber-300 font-semibold' },
+                { label: '2 такта (8 Beats)', mult: 8, badge: 'Музыкальная секция', accent: 'text-zinc-300' }
+            ];
+
+            const tbody = document.getElementById('bpmTableBody');
+            tbody.innerHTML = intervals.map(item => {
+                const seconds = secPerBeat * item.mult;
+                const exactFrames = seconds * fps;
+                const roundedFrames = Math.max(1, Math.round(exactFrames));
+                const ms = Math.round(seconds * 1000);
+
+                return `
+                    <tr class="hover:bg-white/[0.03] transition">
+                        <td class="py-3 px-3 font-medium text-white">${item.label}</td>
+                        <td class="py-3 px-3">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/[0.06] border border-white/10 font-mono font-bold ${item.accent}">
+                                ${roundedFrames} кадр.
+                            </span>
+                        </td>
+                        <td class="py-3 px-3 font-mono text-xs text-zinc-300">${exactFrames.toFixed(2)} fr</td>
+                        <td class="py-3 px-3 font-mono text-xs text-zinc-400">${ms} мс (${seconds.toFixed(2)} с)</td>
+                        <td class="py-3 px-3 text-xs text-zinc-400">${item.badge}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function registerTap() {
+            const now = performance.now();
+            const btn = document.getElementById('tapTempoBtn');
+            btn.classList.remove('tap-active-pulse');
+            void btn.offsetWidth;
+            btn.classList.add('tap-active-pulse');
+
+            // Если пауза больше 2.5 секунд — начинаем заново
+            if (tapTimestamps.length > 0 && now - tapTimestamps[tapTimestamps.length - 1] > 2500) {
+                tapTimestamps = [];
+            }
+
+            tapTimestamps.push(now);
+            if (tapTimestamps.length > 10) tapTimestamps.shift();
+
+            if (tapTimestamps.length >= 2) {
+                let intervals = [];
+                for (let i = 1; i < tapTimestamps.length; i++) {
+                    intervals.push(tapTimestamps[i] - tapTimestamps[i - 1]);
+                }
+                const avgMs = intervals.reduce((a, b) => a + b, 0) / intervals.length;
+                const calculatedBpm = Math.round(60000 / avgMs);
+                document.getElementById('tapBpmDisplay').textContent = `${calculatedBpm} BPM`;
+                document.getElementById('tapStatusSubtext').textContent = `Измерено по ${tapTimestamps.length} ударам — синхронизировано с таблицей!`;
+                syncBpmInputs(calculatedBpm);
+            } else {
+                document.getElementById('tapBpmDisplay').textContent = 'ЕЩЁ УДАР...';
+                document.getElementById('tapStatusSubtext').textContent = 'Продолжайте кликать в ритм трека';
+            }
+        }
+
+        function resetTapTempo() {
+            tapTimestamps = [];
+            document.getElementById('tapBpmDisplay').textContent = 'НАСТУЧАТЬ БИТ';
+            document.getElementById('tapStatusSubtext').textContent = 'Сделайте минимум 4 клика под музыку';
+        }
+
+        function copyAeExpression() {
+            const bpm = appState.bpmTool.bpm || 140;
+            const expr = `// sanskrutoy Studio — Auto Beat Pulse (${bpm} BPM)\nconst bpm = ${bpm};\nconst beat = (time * bpm) / 60;\nconst pulse = Math.exp(-4 * (beat % 1));\nvalue + [pulse * 12, pulse * 12];`;
+            copyTextFallback(expr, `Expression для After Effects (${bpm} BPM) скопирован!`);
+        }
+
+        function applyBitratePreset(duration, bitrate) {
+            document.getElementById('obsDurationInput').value = duration;
+            document.getElementById('obsBitrateInput').value = bitrate;
+            calculateObsStorage();
+            showToast(`Применён пресет: ${duration} мин при ${bitrate} Mbps`);
+        }
+
+        function calculateObsStorage(save = true) {
+            const mins = Math.max(1, parseFloat(document.getElementById('obsDurationInput').value) || 1);
+            const mbps = Math.max(1, parseFloat(document.getElementById('obsBitrateInput').value) || 1);
+            const audioMbps = 0.32; // 320 kbps аудио
+            const totalMbps = mbps + audioMbps;
+
+            const megabytesPerSec = totalMbps / 8;
+            const megabytesPerMin = megabytesPerSec * 60;
+            const totalMegabytes = megabytesPerMin * mins;
+            const totalGigabytes = totalMegabytes / 1024;
+
+            document.getElementById('obsResultGb').textContent = `${totalGigabytes.toFixed(2)} ГБ`;
+            document.getElementById('obsResultMb').textContent = `${Math.round(totalMegabytes).toLocaleString('ru-RU')} МБ (с аудио 320 kbps)`;
+            document.getElementById('obsPerMinMb').textContent = `${megabytesPerMin.toFixed(1)} МБ/мин`;
+            document.getElementById('obsSpeedMBs').textContent = `${megabytesPerSec.toFixed(2)} МБ/с`;
+
+            appState.bpmTool.obsDuration = mins;
+            appState.bpmTool.obsBitrate = mbps;
+            if (save) saveAppState();
+        }
+
+        /* =========================================================================
+           ИНСТРУМЕНТ 3: ГЕНЕРАТОР ТАЙМКОДОВ И ДИКТОРСКИЙ ТАЙМЕР
+           ========================================================================= */
+        let stopwatchInterval = null;
+        let stopwatchElapsedMs = 0;
+        let stopwatchRunning = false;
+        let stopwatchLastTick = 0;
+
+        function initChaptersTool() {
+            renderChaptersList();
+            document.getElementById('voiceScriptInput').value = appState.chaptersTool.script || '';
+            calculateVoiceoverTiming(false);
+        }
+
+        function parseTimecodeToSeconds(tc) {
+            const clean = (tc || '').trim();
+            const parts = clean.split(':').map(p => parseInt(p, 10));
+            if (parts.some(isNaN)) return null;
+            if (parts.length === 2) {
+                return parts[0] * 60 + parts[1];
+            } else if (parts.length === 3) {
+                return parts[0] * 3600 + parts[1] * 60 + parts[2];
+            }
+            return null;
+        }
+
+        function formatSecondsToTimecode(sec) {
+            const total = Math.max(0, Math.floor(sec));
+            const hrs = Math.floor(total / 3600);
+            const mins = Math.floor((total % 3600) / 60);
+            const secs = total % 60;
+            if (hrs > 0) {
+                return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function renderChaptersList() {
+            const chapters = appState.chaptersTool.chapters || [];
+            const container = document.getElementById('chaptersListContainer');
+
+            if (chapters.length === 0) {
+                container.innerHTML = `<div class="p-4 rounded-xl bg-[#0f0f13] border border-white/10 text-xs text-zinc-400 text-center">Список таймкодов пуст. Добавьте первый эпизод с 00:00!</div>`;
+            } else {
+                container.innerHTML = chapters.map((ch, idx) => `
+                    <div class="flex items-center gap-2 p-2.5 rounded-xl bg-[#0f0f13] border border-white/10 hover:border-white/20 transition">
+                        <input type="text" value="${ch.time}" onchange="updateChapterItem(${idx}, 'time', this.value)"
+                            class="w-20 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 font-mono text-xs text-neonRed font-bold text-center focus:outline-none focus:border-neonRed">
+                        <input type="text" value="${ch.title.replace(/"/g, '&quot;')}" onchange="updateChapterItem(${idx}, 'title', this.value)"
+                            class="flex-1 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-transparent focus:border-white/20 text-xs sm:text-sm text-white focus:outline-none">
+                        <button onclick="removeChapter(${idx})" title="Удалить таймкод"
+                            class="w-8 h-8 rounded-lg hover:bg-neonRed/20 text-zinc-400 hover:text-neonRed transition flex items-center justify-center">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            validateYoutubeChapters();
+        }
+
+        function validateYoutubeChapters() {
+            const chapters = appState.chaptersTool.chapters || [];
+            const parsed = chapters.map(c => ({ ...c, sec: parseTimecodeToSeconds(c.time) })).filter(c => c.sec !== null);
+
+            const startsAtZero = parsed.length > 0 && parsed[0].sec === 0;
+            const hasMinThree = parsed.length >= 3;
+
+            let minTenSecGap = true;
+            for (let i = 1; i < parsed.length; i++) {
+                if (parsed[i].sec - parsed[i - 1].sec < 10) {
+                    minTenSecGap = false;
+                    break;
+                }
+            }
+
+            const rules = [
+                { ok: startsAtZero, text: 'Старт с 00:00' },
+                { ok: hasMinThree, text: `Минимум 3 главы (${parsed.length})` },
+                { ok: minTenSecGap && parsed.length >= 2, text: 'Шаг ≥ 10 сек' }
+            ];
+
+            document.getElementById('chaptersValidationBox').innerHTML = rules.map(r => `
+                <div class="flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-medium ${
+                    r.ok ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-neonRed/15 border-neonRed/40 text-neonRed'
+                }">
+                    <i class="fa-solid ${r.ok ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
+                    <span>${r.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function addChapter() {
+            const timeInput = document.getElementById('newChapterTime');
+            const titleInput = document.getElementById('newChapterTitle');
+            let rawTime = timeInput.value.trim() || '00:00';
+            const title = titleInput.value.trim();
+
+            const sec = parseTimecodeToSeconds(rawTime);
+            if (sec === null) {
+                showToast('Введите время в формате ММ:СС (например, 02:15)', 'warn');
+                return;
+            }
+            if (!title) {
+                showToast('Введите название эпизода', 'warn');
+                return;
+            }
+
+            appState.chaptersTool.chapters.push({
+                time: formatSecondsToTimecode(sec),
+                title
+            });
+            timeInput.value = '';
+            titleInput.value = '';
+            renderChaptersList();
+            saveAppState();
+            showToast('Таймкод добавлен!');
+        }
+
+        function updateChapterItem(index, field, val) {
+            if (!appState.chaptersTool.chapters[index]) return;
+            if (field === 'time') {
+                const sec = parseTimecodeToSeconds(val);
+                if (sec !== null) {
+                    appState.chaptersTool.chapters[index].time = formatSecondsToTimecode(sec);
+                }
+            } else {
+                appState.chaptersTool.chapters[index].title = val;
+            }
+            renderChaptersList();
+            saveAppState();
+        }
+
+        function removeChapter(index) {
+            appState.chaptersTool.chapters.splice(index, 1);
+            renderChaptersList();
+            saveAppState();
+        }
+
+        function sortChaptersByTime() {
+            appState.chaptersTool.chapters.sort((a, b) => {
+                const sa = parseTimecodeToSeconds(a.time) ?? 999999;
+                const sb = parseTimecodeToSeconds(b.time) ?? 999999;
+                return sa - sb;
+            });
+            renderChaptersList();
+            saveAppState();
+            showToast('Таймкоды отсортированы по возрастанию времени');
+        }
+
+        function copyChaptersToClipboard() {
+            const chapters = appState.chaptersTool.chapters || [];
+            if (chapters.length === 0) {
+                showToast('Сначала добавьте хотя бы один таймкод', 'warn');
+                return;
+            }
+            const formatted = chapters.map(c => `${c.time} ${c.title}`).join('\n');
+            copyTextFallback(formatted, 'Таймкоды скопированы! Вставьте их в описание ролика на YouTube.');
+        }
+
+        function calculateVoiceoverTiming(save = true) {
+            const text = document.getElementById('voiceScriptInput').value;
+            const trimmed = text.trim();
+            const words = trimmed ? trimmed.split(/\s+/).length : 0;
+            const chars = text.length;
+
+            document.getElementById('scriptWordCount').textContent = words;
+            document.getElementById('scriptCharCount').textContent = `${chars} симв.`;
+
+            const secSlow = Math.round((words / 105) * 60);
+            const secMed = Math.round((words / 130) * 60);
+            const secFast = Math.round((words / 160) * 60);
+
+            document.getElementById('timeSlow').textContent = formatSecondsToTimecode(secSlow);
+            document.getElementById('timeMedium').textContent = formatSecondsToTimecode(secMed);
+            document.getElementById('timeFast').textContent = formatSecondsToTimecode(secFast);
+
+            appState.chaptersTool.script = text;
+            if (save) saveAppState();
+        }
+
+        function loadSampleScript() {
+            document.getElementById('voiceScriptInput').value = defaultState.chaptersTool.script;
+            calculateVoiceoverTiming();
+            showToast('Загружен демо-сценарий озвучки');
+        }
+
+        function toggleStopwatch() {
+            const btn = document.getElementById('stopwatchStartBtn');
+            if (!stopwatchRunning) {
+                stopwatchRunning = true;
+                stopwatchLastTick = performance.now();
+                stopwatchInterval = setInterval(() => {
+                    const now = performance.now();
+                    stopwatchElapsedMs += (now - stopwatchLastTick);
+                    stopwatchLastTick = now;
+                    updateStopwatchDisplay();
+                }, 80);
+                btn.innerHTML = `<i class="fa-solid fa-pause"></i><span>Пауза</span>`;
+                btn.className = 'px-4 py-2 rounded-xl font-semibold text-xs bg-neonRed hover:bg-neonRed/90 text-white transition flex items-center gap-1.5';
+            } else {
+                stopwatchRunning = false;
+                clearInterval(stopwatchInterval);
+                btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Продолжить</span>`;
+                btn.className = 'px-4 py-2 rounded-xl font-semibold text-xs bg-emerald-500 hover:bg-emerald-600 text-white transition flex items-center gap-1.5';
+            }
+        }
+
+        function updateStopwatchDisplay() {
+            const totalSec = stopwatchElapsedMs / 1000;
+            const mins = Math.floor(totalSec / 60);
+            const secs = Math.floor(totalSec % 60);
+            const tenths = Math.floor((stopwatchElapsedMs % 1000) / 100);
+            document.getElementById('stopwatchDisplay').textContent =
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${tenths}`;
+        }
+
+        function markTakeLap() {
+            if (stopwatchElapsedMs <= 0) return;
+            const box = document.getElementById('takesHistoryBox');
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+            const takeNum = box.children.length + 1;
+            const timeStr = document.getElementById('stopwatchDisplay').textContent;
+            const chip = document.createElement('span');
+            chip.className = 'px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-300';
+            chip.textContent = `Дубль #${takeNum}: ${timeStr}`;
+            box.appendChild(chip);
+        }
+
+        function resetStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+            stopwatchElapsedMs = 0;
+            updateStopwatchDisplay();
+            const btn = document.getElementById('stopwatchStartBtn');
+            btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Старт</span>`;
+            btn.className = 'px-4 py-2 rounded-xl font-semibold text-xs bg-emerald-500 hover:bg-emerald-600 text-white transition flex items-center gap-1.5';
+            const box = document.getElementById('takesHistoryBox');
+            box.innerHTML = '';
+            box.classList.add('hidden');
+        }
+
+        /* =========================================================================
+           ИНСТРУМЕНТ 4: ТРЕКЕР ПРОДАКШЕНА ВИДЕО (KANBAN & ЧЕК-ЛИСТ)
+           ========================================================================= */
+        const KANBAN_COLUMNS = [
+            { key: 'idea', title: 'Идея / Сценарий', icon: 'fa-lightbulb text-amber-400', border: 'border-amber-500/30' },
+            { key: 'voice', title: 'Запись / Озвучка', icon: 'fa-microphone text-neonRed', border: 'border-neonRed/30' },
+            { key: 'edit', title: 'Монтаж (Premiere / AE)', icon: 'fa-wand-magic-sparkles text-purple-400', border: 'border-purple-500/30' },
+            { key: 'release', title: 'Превью и Выкладка', icon: 'fa-circle-play text-emerald-400', border: 'border-emerald-500/30' }
+        ];
+
+        const CHECKLIST_DEFINITIONS = [
+            { key: 'audioPeak', title: 'Звук и мастеринг без перегрузов', desc: 'Пики голоса до -1 dB (True Peak), громкость около -14 LUFS, шумы удалены' },
+            { key: 'noBlackFrames', title: 'Рендер проверен от начала до конца', desc: 'Нет чёрных кадров, сбитых шрифтов,Media Offline и просадок FPS' },
+            { key: 'thumbSafeZone', title: 'Кликабельное превью проверено в 3 размерах', desc: 'Таймкод 14:28 не закрывает текст, превью выделяется на тёмном и светлом фоне' },
+            { key: 'chaptersZero', title: 'Таймкоды в описании начинаются с 00:00', desc: 'Минимум 3 эпизода с интервалом от 10 секунд для навигации зрителей' },
+            { key: 'seoTags', title: 'Заголовок до 70 символов, описание и теги', desc: 'Добавлены ссылки на соцсети, плейлисты и ключевые слова' },
+            { key: 'endScreens', title: 'Конечные заставки, подсказки и закреп', desc: 'Настроены End Screens и написан вовлекающий закреплённый комментарий' }
+        ];
+
+        function initKanbanAndChecklist() {
+            renderKanbanBoard();
+            renderChecklist();
+        }
+
+        function renderKanbanBoard() {
+            const container = document.getElementById('kanbanBoardContainer');
+            const cards = appState.kanbanTool.cards || [];
+
+            container.innerHTML = KANBAN_COLUMNS.map((col, colIdx) => {
+                const colCards = cards.filter(c => c.stage === col.key);
+
+                const cardsHtml = colCards.length === 0
+                    ? `<div class="p-4 rounded-xl border border-dashed border-white/10 text-center text-xs text-zinc-500">Переместите или добавьте карточку</div>`
+                    : colCards.map(card => `
+                        <div class="p-3.5 rounded-xl bg-[#0f0f13] border border-white/10 hover:border-white/25 transition space-y-2.5 group">
+                            <div class="flex items-start justify-between gap-2">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-white/[0.06] text-zinc-300 border border-white/10">
+                                    ${card.badge}
+                                </span>
+                                <button onclick="deleteKanbanCard('${card.id}')" title="Удалить карточку"
+                                    class="text-zinc-500 hover:text-neonRed transition text-xs">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold text-white leading-snug">${card.title}</p>
+                            <div class="flex items-center justify-between pt-1 border-t border-white/5">
+                                <button onclick="moveKanbanCard('${card.id}', -1)" ${colIdx === 0 ? 'disabled' : ''}
+                                    class="px-2 py-1 rounded-lg text-xs ${colIdx === 0 ? 'opacity-25 cursor-not-allowed text-zinc-600' : 'bg-white/5 hover:bg-white/10 text-zinc-300'} transition">
+                                    <i class="fa-solid fa-arrow-left mr-1"></i> Назад
+                                </button>
+                                <button onclick="moveKanbanCard('${card.id}', 1)" ${colIdx === KANBAN_COLUMNS.length - 1 ? 'disabled' : ''}
+                                    class="px-2.5 py-1 rounded-lg text-xs font-medium ${colIdx === KANBAN_COLUMNS.length - 1 ? 'opacity-25 cursor-not-allowed text-zinc-600' : 'bg-neonRed/15 hover:bg-neonRed/25 text-neonRed'} transition">
+                                    Далее <i class="fa-solid fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+
+                return `
+                    <div class="studio-card rounded-2xl p-4 flex flex-col gap-3 border-t-2 ${col.border}">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid ${col.icon} text-sm"></i>
+                                <h4 class="font-bold text-xs sm:text-sm text-white">${col.title}</h4>
+                            </div>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-mono bg-white/5 text-zinc-400">${colCards.length}</span>
+                        </div>
+                        <div class="space-y-2.5 flex-1">
+                            ${cardsHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addKanbanCard() {
+            const input = document.getElementById('newKanbanTitle');
+            const badge = document.getElementById('newKanbanBadge').value;
+            const title = input.value.trim();
+            if (!title) {
+                showToast('Введите название нового ролика', 'warn');
+                return;
+            }
+            appState.kanbanTool.cards.unshift({
+                id: 'card_' + Date.now(),
+                title,
+                badge,
+                stage: 'idea'
+            });
+            input.value = '';
+            renderKanbanBoard();
+            saveAppState();
+            showToast('Карточка ролика добавлена в «Идея / Сценарий»');
+        }
+
+        function moveKanbanCard(cardId, direction) {
+            const card = appState.kanbanTool.cards.find(c => c.id === cardId);
+            if (!card) return;
+            const idx = KANBAN_COLUMNS.findIndex(col => col.key === card.stage);
+            const nextIdx = idx + direction;
+            if (nextIdx >= 0 && nextIdx < KANBAN_COLUMNS.length) {
+                card.stage = KANBAN_COLUMNS[nextIdx].key;
+                renderKanbanBoard();
+                saveAppState();
+            }
+        }
+
+        function deleteKanbanCard(cardId) {
+            appState.kanbanTool.cards = appState.kanbanTool.cards.filter(c => c.id !== cardId);
+            renderKanbanBoard();
+            saveAppState();
+            showToast('Карточка ролика удалена', 'info');
+        }
+
+        function renderChecklist() {
+            const grid = document.getElementById('checklistItemsGrid');
+            const stateMap = appState.kanbanTool.checklist || {};
+
+            let completed = 0;
+            grid.innerHTML = CHECKLIST_DEFINITIONS.map(item => {
+                const checked = !!stateMap[item.key];
+                if (checked) completed++;
+                return `
+                    <label class="flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition select-none ${
+                        checked
+                        ? 'bg-emerald-500/10 border-emerald-500/30 text-white'
+                        : 'bg-[#0f0f13] border-white/10 hover:border-white/20 text-zinc-200'
+                    }">
+                        <input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleChecklistItem('${item.key}', this.checked)"
+                            class="mt-1 w-4 h-4 accent-neonRed rounded cursor-pointer shrink-0">
+                        <div>
+                            <div class="text-xs sm:text-sm font-semibold ${checked ? 'line-through text-emerald-300' : 'text-white'}">${item.title}</div>
+                            <div class="text-[11px] text-zinc-400 mt-0.5">${item.desc}</div>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+
+            const pct = Math.round((completed / CHECKLIST_DEFINITIONS.length) * 100);
+            document.getElementById('checklistProgressBar').style.width = `${pct}%`;
+            const badge = document.getElementById('checklistPercentBadge');
+            badge.textContent = pct === 100 ? '🔥 100% — Готов к релизу!' : `${pct}% готово (${completed}/${CHECKLIST_DEFINITIONS.length})`;
+            badge.className = pct === 100
+                ? 'px-3 py-1 rounded-xl font-mono font-bold text-sm bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                : 'px-3 py-1 rounded-xl font-mono font-bold text-sm bg-neonRed/15 text-neonRed border border-neonRed/30';
+        }
+
+        function toggleChecklistItem(key, val) {
+            appState.kanbanTool.checklist[key] = val;
+            renderChecklist();
+            saveAppState();
+            const allDone = CHECKLIST_DEFINITIONS.every(d => appState.kanbanTool.checklist[d.key]);
+            if (allDone && val) {
+                showToast('Поздравляем! Ролик на 100% готов к выкладке на YouTube!');
+            }
+        }
+
+        function resetChecklist() {
+            CHECKLIST_DEFINITIONS.forEach(d => appState.kanbanTool.checklist[d.key] = false);
+            renderChecklist();
+            saveAppState();
+            showToast('Предрелизный чек-лист очищен', 'info');
+        }
+
+        function resetAllStudioData() {
+            localStorage.removeItem(STORAGE_KEY);
+            appState = JSON.parse(JSON.stringify(defaultState));
+            initThumbnailTester();
+            initBpmToolkit();
+            initChaptersTool();
+            initKanbanAndChecklist();
+            switchTab('tab-thumbnail');
+            showToast('Все демо-данные студии восстановлены по умолчанию');
+        }
+
+        /* =========================================================================
+           ЗАПУСК ПРИЛОЖЕНИЯ ПРИ ЗАГРУЗКЕ ОКНА
+           ========================================================================= */
+        window.onload = function() {
+            initThumbnailTester();
+            initBpmToolkit();
+            initChaptersTool();
+            initKanbanAndChecklist();
+            switchTab(appState.activeTab || 'tab-thumbnail');
+        };
+    </script>
+</body>
+</html>
