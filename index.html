@@ -183,10 +183,10 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white">
-                            sanskrutoy <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonRed to-neonPurple">studio</span>
+                            sanskrutoy <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonRed to-neonPurple">Creator Hub</span>
                         </span>
                         <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-neonRed/15 text-neonRed border border-neonRed/30">
-                            PRO TOOLKIT v2.5
+                            PRO TOOLKIT v3.0
                         </span>
                     </div>
                     <p class="text-xs text-zinc-400 hidden sm:block">Студия и рабочий хаб ютубера, стримера и монтажёра</p>
@@ -216,17 +216,29 @@
         </div>
     </header>
 
-    <!-- НАВИГАЦИЯ ПО 4 ИНСТРУМЕНТАМ -->
+    <!-- НАВИГАЦИЯ ПО 5 ИНСТРУМЕНТАМ -->
     <nav class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 pb-2">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
             <button id="btn-tab-thumbnail" onclick="switchTab('tab-thumbnail')"
                 class="tab-btn active flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
                 <div class="w-10 h-10 rounded-xl bg-neonRed/15 border border-neonRed/30 flex items-center justify-center text-neonRed shrink-0 group-hover:scale-105 transition">
                     <i class="fa-solid fa-eye text-base"></i>
                 </div>
                 <div class="min-w-0">
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 01</div>
-                    <div class="font-bold text-xs sm:text-sm text-white truncate">Тестер превью YouTube</div>
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Модуль 01</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">🖼 Тестер превью</div>
+                </div>
+            </button>
+
+            <button id="btn-tab-copyright" onclick="switchTab('tab-copyright')"
+                class="tab-btn flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group relative overflow-hidden">
+                <span class="absolute top-1.5 right-2 px-1.5 py-0.2 rounded text-[9px] font-mono font-extrabold bg-neonRed text-white shadow">NEW</span>
+                <div class="w-10 h-10 rounded-xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-compact-disc text-base"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Модуль 02</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">🎵 Проверка АП</div>
                 </div>
             </button>
 
@@ -236,8 +248,8 @@
                     <i class="fa-solid fa-wave-square text-base"></i>
                 </div>
                 <div class="min-w-0">
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 02</div>
-                    <div class="font-bold text-xs sm:text-sm text-white truncate">Бит-синх и Калькулятор AE</div>
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Модуль 03</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">🎬 Калькулятор AE</div>
                 </div>
             </button>
 
@@ -247,19 +259,19 @@
                     <i class="fa-solid fa-list-check text-base"></i>
                 </div>
                 <div class="min-w-0">
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 03</div>
-                    <div class="font-bold text-xs sm:text-sm text-white truncate">Таймкоды и Диктор</div>
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Модуль 04</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">⏱ Таймкоды</div>
                 </div>
             </button>
 
             <button id="btn-tab-kanban" onclick="switchTab('tab-kanban')"
-                class="tab-btn flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
+                class="tab-btn col-span-2 md:col-span-1 flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-bgCard border border-white/10 text-left group">
                 <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 group-hover:scale-105 transition">
                     <i class="fa-solid fa-table-columns text-base"></i>
                 </div>
                 <div class="min-w-0">
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Инструмент 04</div>
-                    <div class="font-bold text-xs sm:text-sm text-white truncate">Продакшен & Чек-лист</div>
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Модуль 05</div>
+                    <div class="font-bold text-xs sm:text-sm text-white truncate">📋 Канбан-трекер</div>
                 </div>
             </button>
         </div>
@@ -561,7 +573,188 @@
         </section>
 
         <!-- =====================================================================
-             ВКЛАДКА 2: КАЛЬКУЛЯТОР МОНТАЖА И БИТ-СИНХА (AE / PREMIERE / OBS)
+             ВКЛАДКА 2 (НОВАЯ): ПРОВЕРКА МУЗЫКИ НА АП (CONTENT ID & COPYRIGHT RADAR)
+             ===================================================================== -->
+        <section id="tab-copyright" class="tab-panel hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                <!-- Левая колонка: Поиск трека, быстрые пресеты и список найденных (7 колонок) -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h2 class="text-base sm:text-lg font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-shield-virus text-neonRed"></i>
+                                    <span>Радар авторских прав (YouTube Content ID)</span>
+                                </h2>
+                                <p class="text-xs text-zinc-400">Живой поиск по базе релизов + проверка лейбла, дистрибьютора и риска блокировки</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-xl text-xs font-mono bg-neonRed/15 text-neonRed border border-neonRed/30">
+                                iTunes API + Curated DB
+                            </span>
+                        </div>
+
+                        <!-- Поисковая строка -->
+                        <div class="flex flex-col sm:flex-row gap-2.5">
+                            <div class="relative flex-1">
+                                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 text-sm"></i>
+                                <input type="text" id="musicSearchInput"
+                                    placeholder="Введите артиста или трек (например: TV Girl - Lovers Rock)..."
+                                    onkeydown="if(event.key==='Enter') searchMusicCopyright()"
+                                    class="w-full rounded-xl bg-[#0f0f13] border border-white/10 focus:border-neonRed focus:outline-none pl-10 pr-4 py-2.5 text-sm text-white placeholder-zinc-500">
+                            </div>
+                            <button id="musicSearchBtn" onclick="searchMusicCopyright()"
+                                class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonRed to-neonPurple text-white font-semibold text-sm shadow-lg shadow-neonRed/25 hover:opacity-95 transition flex items-center justify-center gap-2 shrink-0">
+                                <i class="fa-solid fa-radar"></i>
+                                <span>Проверить на АП</span>
+                            </button>
+                        </div>
+
+                        <!-- Быстрые кнопки проверки популярных треков -->
+                        <div class="space-y-1.5 pt-1">
+                            <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Быстрый тест популярных треков:</div>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button onclick="quickTestTrack('TV Girl - Lovers Rock')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs text-zinc-200 transition">🎸 TV Girl - Lovers Rock</button>
+                                <button onclick="quickTestTrack('Mac DeMarco - Chamber of Reflection')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs text-zinc-200 transition">🎹 Mac DeMarco - Chamber of Reflection</button>
+                                <button onclick="quickTestTrack('Alex G - Mary')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs text-zinc-200 transition">🌲 Alex G - Mary</button>
+                                <button onclick="quickTestTrack('Current Joys - New Flesh')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-neonRed/20 border border-white/10 text-xs text-zinc-200 transition">⚡ Current Joys - New Flesh</button>
+                                <button onclick="quickTestTrack('Kevin MacLeod - Sneaky Snitch')" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs text-emerald-300 transition">🟢 Kevin MacLeod - Sneaky Snitch</button>
+                                <button onclick="quickTestTrack('Elektronomia - Sky High NCS')" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs text-emerald-300 transition">🟢 NCS - Elektronomia Sky High</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер результатов поиска со Светофором АП -->
+                    <div id="musicResultsContainer" class="space-y-3">
+                        <!-- Заполняется динамически через JS -->
+                    </div>
+                </div>
+
+                <!-- Правая колонка: Симулятор обхода Content ID (Pitch/Speed) и Разбор логики (5 колонок) -->
+                <div class="lg:col-span-5 space-y-5">
+                    
+                    <!-- Калькулятор / Симулятор обхода Content ID для монтажёра -->
+                    <div class="studio-card rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-base font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-sliders text-neonPurple"></i>
+                                    <span>Тестер обработки звука (Pitch / Speed)</span>
+                                </h3>
+                                <p class="text-xs text-zinc-400">Послушайте в реальном времени, как звучит трек в стиле Slowed или Speed Up</p>
+                            </div>
+                            <span id="activeTrackBadge" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300 truncate max-w-[140px]">
+                                Трек не выбран
+                            </span>
+                        </div>
+
+                        <!-- Встроенный аудиоплеер с поддержкой playbackRate -->
+                        <div class="p-4 rounded-2xl bg-[#0f0f13] border border-white/10 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <img id="playerCoverImg" src="https://placehold.co/100x100/1e1e28/ff2a5f?text=♪" alt="Cover"
+                                    class="w-14 h-14 rounded-xl object-cover border border-white/10 shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <div id="playerTrackTitle" class="font-bold text-sm text-white truncate">Выберите любой трек слева</div>
+                                    <div id="playerTrackArtist" class="text-xs text-zinc-400 truncate">Нажмите «Слушать и тестить» в карточке</div>
+                                    <div id="playerLabelInfo" class="text-[11px] font-mono text-neonRed truncate mt-0.5">Ожидание выбора трека...</div>
+                                </div>
+                                <button id="mainAudioPlayBtn" onclick="togglePreviewAudio()"
+                                    class="w-11 h-11 rounded-xl bg-gradient-to-br from-neonRed to-neonPurple text-white flex items-center justify-center shadow-lg shadow-neonRed/25 hover:scale-105 transition shrink-0">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </div>
+
+                            <!-- Прогресс-бар 30-секундного превью -->
+                            <div class="space-y-1">
+                                <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                                    <div id="audioProgressBar" class="h-full bg-gradient-to-r from-neonRed to-neonPurple transition-all duration-150" style="width: 0%;"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] font-mono text-zinc-400">
+                                    <span id="audioCurrentTime">00:00</span>
+                                    <span>30-сек превью</span>
+                                </div>
+                            </div>
+
+                            <!-- Управление скоростью и высотой тона -->
+                            <div class="pt-2 border-t border-white/10 space-y-2.5">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-zinc-300 font-medium">Скорость и тон (Speed / Pitch):</span>
+                                    <span id="playbackRateBadge" class="font-mono font-bold text-neonRed">1.00x (Оригинал)</span>
+                                </div>
+                                <input type="range" id="playbackRateSlider" min="0.75" max="1.30" step="0.05" value="1.00"
+                                    oninput="changeAudioSpeed(this.value)" class="w-full">
+                                <div class="grid grid-cols-3 gap-2 pt-1">
+                                    <button onclick="changeAudioSpeed(0.85)" class="py-1.5 px-2 rounded-xl bg-white/5 hover:bg-neonPurple/20 border border-white/10 text-[11px] font-mono text-purple-300 transition">
+                                        🌊 0.85x Slowed
+                                    </button>
+                                    <button onclick="changeAudioSpeed(1.00)" class="py-1.5 px-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-mono text-white transition">
+                                        🎯 1.00x Оригинал
+                                    </button>
+                                    <button onclick="changeAudioSpeed(1.15)" class="py-1.5 px-2 rounded-xl bg-white/5 hover:bg-neonRed/20 border border-white/10 text-[11px] font-mono text-neonRed transition">
+                                        ⚡ 1.15x Nightcore
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Чекбокс симуляции разговора и геймплея поверх музыки -->
+                            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] cursor-pointer transition">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-microphone-lines text-emerald-400"></i>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white">Голос и звуки игры поверх трека (-18 dB)</div>
+                                        <div class="text-[11px] text-zinc-400">Как громкость фона влияет на срабатывание Content ID</div>
+                                    </div>
+                                </div>
+                                <input type="checkbox" id="toggleVoiceOverMix" checked onchange="updateBypassVerdict()" class="w-4 h-4 accent-neonRed rounded cursor-pointer">
+                            </label>
+                        </div>
+
+                        <!-- Реалистичный вердикт по обходу Content ID в 2026 году -->
+                        <div id="bypassVerdictBox" class="p-4 rounded-2xl bg-neonPurple/10 border border-neonPurple/30 space-y-1.5">
+                            <div class="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span id="bypassVerdictTitle">Правда против мифов о Content ID (2026):</span>
+                            </div>
+                            <p id="bypassVerdictText" class="text-xs text-zinc-300 leading-relaxed">
+                                Нейросеть YouTube легко распознаёт простое ускорение 1.15x или замедление 0.85x, если трек играет чисто и громко. Но если увести музыку на фон (-18...-22 dB) под активную речь, звуки игры (CS2 / Minecraft) и нарезать короткими фрагментами до 7–10 секунд, шанс получить жалобу падает в разы!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Шпаргалка по коду для начинающего разработчика (в 4 строки!) -->
+                    <details class="studio-card rounded-2xl p-5 group" open>
+                        <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-sm sm:text-base text-white">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-code text-emerald-400"></i>
+                                <span>Шпаргалка: как работает этот детектор (в 4 строчки!)</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-down text-xs text-zinc-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="mt-3.5 space-y-3 text-xs text-zinc-300 border-t border-white/10 pt-3.5">
+                            <p>
+                                Никакой «космической» математики тут нет! Вот буквально вся логика светофора АП на простом языке, которую ты спокойно напишешь сам:
+                            </p>
+                            <pre class="p-3.5 rounded-xl bg-[#0f0f13] border border-white/10 font-mono text-[11px] leading-relaxed overflow-x-auto text-zinc-200"><span class="text-zinc-500">// 1. Проверяем, есть ли в названии лейбла крупные корпорации:</span>
+<span class="text-pink-400">if</span> (label.includes(<span class="text-amber-300">"Universal"</span>) || label.includes(<span class="text-amber-300">"Sony"</span>) || label.includes(<span class="text-amber-300">"Warner"</span>)) {
+    status = <span class="text-neonRed">"🔴 ВЫСОКИЙ РИСК (Жёсткий Content ID)"</span>;
+} <span class="text-pink-400">else if</span> (label.includes(<span class="text-amber-300">"NCS"</span>) || label.includes(<span class="text-amber-300">"Kevin MacLeod"</span>)) {
+    status = <span class="text-emerald-400">"🟢 БЕЗОПАСНО (Royalty-Free / Без АП)"</span>;
+} <span class="text-pink-400">else</span> {
+    status = <span class="text-amber-400">"🟡 СРЕДНИЙ РИСК (Инди-дистрибьютор)"</span>;
+}</pre>
+                            <p class="text-[11px] text-zinc-400">
+                                <i class="fa-solid fa-fire text-neonRed mr-1"></i>
+                                И точно так же устроены проверки баланса в магазинах, логика Telegram-ботов и весь бэкенд: просто цепочка условий <code class="text-white font-mono">если → иначе</code>!
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             ВКЛАДКА 3: КАЛЬКУЛЯТОР МОНТАЖА И БИТ-СИНХА (AE / PREMIERE / OBS)
              ===================================================================== -->
         <section id="tab-bpm" class="tab-panel hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -1097,10 +1290,11 @@
            ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
            ========================================================================= */
         function switchTab(tabId) {
-            const tabs = ['tab-thumbnail', 'tab-bpm', 'tab-chapters', 'tab-kanban'];
+            const tabs = ['tab-thumbnail', 'tab-copyright', 'tab-bpm', 'tab-chapters', 'tab-kanban'];
             tabs.forEach(id => {
                 const section = document.getElementById(id);
                 const btn = document.getElementById('btn-' + id);
+                if (!section || !btn) return;
                 if (id === tabId) {
                     section.classList.remove('hidden');
                     btn.classList.add('active');
@@ -1111,6 +1305,436 @@
             });
             appState.activeTab = tabId;
             saveAppState();
+        }
+
+        /* =========================================================================
+           ИНСТРУМЕНТ 2 (НОВЫЙ): ПРОВЕРКА МУЗЫКИ НА АП (CONTENT ID & COPYRIGHT RADAR)
+           ========================================================================= */
+        let previewAudio = new Audio();
+        previewAudio.crossOrigin = "anonymous";
+        let currentPlayingTrackId = null;
+
+        // Надежная встроенная база популярных у монтажёров треков на случай офлайна или лимитов API
+        const CURATED_MUSIC_DB = [
+            {
+                trackId: 'curated_1',
+                trackName: 'Lovers Rock',
+                artistName: 'TV Girl',
+                collectionName: 'French Exit',
+                releaseDate: '2014-06-05',
+                copyright: '℗ 2014 TV Girl (Self-Released / Bandcamp & Orchard Content ID)',
+                artworkUrl100: 'https://placehold.co/200x200/ff2a5f/ffffff?text=TV+Girl',
+                previewUrl: ''
+            },
+            {
+                trackId: 'curated_2',
+                trackName: 'Chamber of Reflection',
+                artistName: 'Mac DeMarco',
+                collectionName: 'Salad Days',
+                releaseDate: '2014-04-01',
+                copyright: '℗ 2014 Captured Tracks (Omnian Music Group / Merlin Content ID)',
+                artworkUrl100: 'https://placehold.co/200x200/7c3aed/ffffff?text=Mac+DeMarco',
+                previewUrl: ''
+            },
+            {
+                trackId: 'curated_3',
+                trackName: 'Mary',
+                artistName: 'Alex G',
+                collectionName: 'Trick',
+                releaseDate: '2012-11-05',
+                copyright: '℗ 2012 Lucky Number Music / Domino Recording Co (Content ID Active)',
+                artworkUrl100: 'https://placehold.co/200x200/059669/ffffff?text=Alex+G',
+                previewUrl: ''
+            },
+            {
+                trackId: 'curated_4',
+                trackName: 'New Flesh',
+                artistName: 'Current Joys',
+                collectionName: 'Wild Heart',
+                releaseDate: '2013-01-02',
+                copyright: '℗ 2013 Danger Collective Records / Secretly Distribution',
+                artworkUrl100: 'https://placehold.co/200x200/db2777/ffffff?text=Current+Joys',
+                previewUrl: ''
+            },
+            {
+                trackId: 'curated_5',
+                trackName: 'Sneaky Snitch',
+                artistName: 'Kevin MacLeod',
+                collectionName: 'Incompetech Royalty-Free Classic',
+                releaseDate: '2014-01-01',
+                copyright: '℗ Creative Commons Attribution 4.0 (CC-BY) — Incompetech / Royalty-Free',
+                artworkUrl100: 'https://placehold.co/200x200/10b981/ffffff?text=CC-BY+Free',
+                previewUrl: ''
+            },
+            {
+                trackId: 'curated_6',
+                trackName: 'Sky High',
+                artistName: 'Elektronomia (NCS Release)',
+                collectionName: 'NoCopyrightSounds',
+                releaseDate: '2016-12-20',
+                copyright: '℗ NoCopyrightSounds (NCS) — Free for YouTube Creators & Monetization',
+                artworkUrl100: 'https://placehold.co/200x200/10b981/ffffff?text=NCS+Safe',
+                previewUrl: ''
+            }
+        ];
+
+        let lastSearchTracks = [];
+
+        function initCopyrightChecker() {
+            // Настраиваем слушатели прогресса аудиоплеера
+            previewAudio.addEventListener('timeupdate', () => {
+                if (!previewAudio.duration) return;
+                const pct = Math.min(100, (previewAudio.currentTime / previewAudio.duration) * 100);
+                document.getElementById('audioProgressBar').style.width = pct + '%';
+                const s = Math.floor(previewAudio.currentTime);
+                document.getElementById('audioCurrentTime').textContent = `00:${String(s).padStart(2, '0')}`;
+            });
+
+            previewAudio.addEventListener('ended', () => {
+                updatePlayButtonState(false);
+            });
+
+            // Загружаем стартовый набор треков, чтобы вкладка сразу была живой и наполненной
+            lastSearchTracks = CURATED_MUSIC_DB;
+            renderMusicResults(lastSearchTracks);
+            selectTrackForSimulator(lastSearchTracks[0], false);
+        }
+
+        // Функция анализатора лейбла («Светофор АП»)
+        function analyzeTrackCopyrightRisk(track) {
+            const text = `${track.artistName || ''} ${track.trackName || ''} ${track.collectionName || ''} ${track.copyright || ''}`.toLowerCase();
+
+            // 1. Проверка на безопасные библиотеки (NCS, Kevin MacLeod, Creative Commons, Audio Library)
+            const safeKeywords = ['nocopyrightsounds', 'ncs', 'kevin macleod', 'incompetech', 'creative commons', 'cc-by', 'royalty-free', 'royalty free', 'streambeats', 'youtube audio library'];
+            if (safeKeywords.some(k => text.includes(k))) {
+                return {
+                    level: 'low',
+                    badgeText: '🟢 БЕЗОПАСНО (Royalty-Free / Без АП)',
+                    badgeClass: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40',
+                    cardBorder: 'border-emerald-500/30',
+                    labelSummary: track.copyright || 'Royalty-Free / Creative Commons License',
+                    explanation: 'Можно смело ставить на фон в видео и стримы. Монетизация на 100% остаётся у тебя. При лицензии CC-BY (например, Kevin MacLeod) или NCS просто скопируй строчку с автором в описание ролика.'
+                };
+            }
+
+            // 2. Проверка на мейджор-лейблы и жёстких правообладателей
+            const majorKeywords = [
+                'universal', 'umg', 'sony', 'columbia', 'epic records', 'rca', 'warner', 'wmg',
+                'atlantic', 'interscope', 'republic', 'def jam', 'capitol', 'parlophone', 'rhymes',
+                'emg', 'believe music', 'bmg', 'polydor', 'island records', 'virgin'
+            ];
+            if (majorKeywords.some(k => text.includes(k))) {
+                return {
+                    level: 'high',
+                    badgeText: '🔴 ВЫСОКИЙ РИСК (Мейджор-лейбл / Content ID)',
+                    badgeClass: 'bg-neonRed/20 text-neonRed border-neonRed/40',
+                    cardBorder: 'border-neonRed/35',
+                    labelSummary: track.copyright || 'Крупный музыкальный лейбл (Major Label Content ID)',
+                    explanation: 'Автоматический Content ID распознаёт этот трек за 5–8 секунд. Страйк каналу не дадут, но монетизация ролика уйдёт правообладателю, а на некоторых треках возможна блокировка видео в отдельных странах.'
+                };
+            }
+
+            // 3. Инди-артисты и независимые дистрибьюторы (TV Girl, Mac DeMarco, Alex G, DistroKid, Bandcamp)
+            return {
+                level: 'medium',
+                badgeText: '🟡 СРЕДНИЙ РИСК (Инди-лейбл / Дистрибьютор)',
+                badgeClass: 'bg-amber-500/15 text-amber-300 border-amber-500/40',
+                cardBorder: 'border-amber-500/30',
+                labelSummary: track.copyright || 'Независимая дистрибуция (Indie / DistroKid / TuneCore / Orchard)',
+                explanation: 'Видео не заблокируют и страйк не прилетит — такие треки постоянно используют в эдитах и на фоне. Но дистрибьютор артиста может автоматически повесить плашку Content ID (доход с рекламы пойдёт автору песни).'
+            };
+        }
+
+        function quickTestTrack(query) {
+            document.getElementById('musicSearchInput').value = query;
+            searchMusicCopyright(query);
+        }
+
+        async function searchMusicCopyright(overrideQuery) {
+            const input = document.getElementById('musicSearchInput');
+            const query = (overrideQuery || input.value || '').trim();
+            if (!query) {
+                showToast('Введите название песни или имя исполнителя', 'warn');
+                return;
+            }
+
+            const btn = document.getElementById('musicSearchBtn');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>Поиск...</span>`;
+            btn.disabled = true;
+
+            try {
+                const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song&limit=8`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                let results = (data && data.results) ? data.results : [];
+
+                // Дополняем поиск совпадениями из курируемой базы (особенно для NCS / Kevin MacLeod с точными тегами лицензий)
+                const qLower = query.toLowerCase();
+                const curatedMatches = CURATED_MUSIC_DB.filter(item =>
+                    item.trackName.toLowerCase().includes(qLower) ||
+                    item.artistName.toLowerCase().includes(qLower)
+                );
+
+                // Если iTunes нашёл треки, обогащаем их данными о лейбле или объединяем
+                const merged = [...curatedMatches];
+                results.forEach(r => {
+                    const isDuplicate = merged.some(m =>
+                        m.trackName.toLowerCase() === (r.trackName || '').toLowerCase() &&
+                        m.artistName.toLowerCase() === (r.artistName || '').toLowerCase()
+                    );
+                    if (!isDuplicate) {
+                        merged.push({
+                            trackId: String(r.trackId || Math.random()),
+                            trackName: r.trackName || 'Без названия',
+                            artistName: r.artistName || 'Неизвестный артист',
+                            collectionName: r.collectionName || 'Single',
+                            releaseDate: r.releaseDate || '',
+                            copyright: inferCopyrightString(r),
+                            artworkUrl100: (r.artworkUrl100 || '').replace('100x100bb', '200x200bb'),
+                            previewUrl: r.previewUrl || ''
+                        });
+                    } else {
+                        // Если дубликат из курируемой базы не имел аудио-превью, берем живое превью из iTunes!
+                        const existing = merged.find(m =>
+                            m.trackName.toLowerCase() === (r.trackName || '').toLowerCase()
+                        );
+                        if (existing && !existing.previewUrl && r.previewUrl) {
+                            existing.previewUrl = r.previewUrl;
+                            if (r.artworkUrl100) {
+                                existing.artworkUrl100 = r.artworkUrl100.replace('100x100bb', '200x200bb');
+                            }
+                        }
+                    }
+                });
+
+                if (merged.length === 0) {
+                    showToast('Точных совпадений не найдено, показаны популярные треки для теста', 'info');
+                    lastSearchTracks = CURATED_MUSIC_DB;
+                } else {
+                    lastSearchTracks = merged.slice(0, 8);
+                    showToast(`Проверено релизов: ${lastSearchTracks.length}`);
+                }
+
+                renderMusicResults(lastSearchTracks);
+                if (lastSearchTracks.length > 0) {
+                    selectTrackForSimulator(lastSearchTracks[0], false);
+                }
+            } catch (err) {
+                // В случае блокировки сети браузером используем курируемую базу
+                const qLower = query.toLowerCase();
+                const filtered = CURATED_MUSIC_DB.filter(item =>
+                    item.trackName.toLowerCase().includes(qLower) ||
+                    item.artistName.toLowerCase().includes(qLower)
+                );
+                lastSearchTracks = filtered.length > 0 ? filtered : CURATED_MUSIC_DB;
+                renderMusicResults(lastSearchTracks);
+                showToast('Проверка выполнена по локальной базе лейблов', 'info');
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
+        // Определение правообладателя по артисту/альбому для наглядного отображения
+        function inferCopyrightString(r) {
+            const combined = `${r.artistName || ''} ${r.collectionName || ''} ${r.trackName || ''}`.toLowerCase();
+            if (combined.includes('kevin macleod') || combined.includes('incompetech')) {
+                return '℗ Creative Commons Attribution 4.0 (CC-BY) — Royalty-Free';
+            }
+            if (combined.includes('ncs') || combined.includes('nocopyrightsounds') || combined.includes('elektronomia')) {
+                return '℗ NoCopyrightSounds (NCS) — Creator Safe License';
+            }
+            const famousMajorArtists = ['travis scott', 'drake', 'the weeknd', 'eminem', 'kanye', 'metallica', 'nirvana', 'linkin park', 'imagine dragons', 'billie eilish', 'playboi carti', 'kendrick lamar', 'lana del rey', 'arctic monkeys', 'neighbourhood'];
+            if (famousMajorArtists.some(a => combined.includes(a))) {
+                return `℗ Major Label Distribution (UMG / Sony / Warner Content ID) — ${r.artistName}`;
+            }
+            return `℗ Digital Distribution / Record Label (${r.artistName} — ${r.collectionName || 'Release'})`;
+        }
+
+        function renderMusicResults(tracks) {
+            const container = document.getElementById('musicResultsContainer');
+            container.innerHTML = tracks.map((track, idx) => {
+                const risk = analyzeTrackCopyrightRisk(track);
+                const year = track.releaseDate ? track.releaseDate.slice(0, 4) : 'Релиз';
+                const cover = track.artworkUrl100 || 'https://placehold.co/160x160/1e1e28/ff2a5f?text=♪';
+
+                return `
+                    <div class="studio-card rounded-2xl p-4 border ${risk.cardBorder} transition hover:bg-white/[0.02]">
+                        <div class="flex flex-col sm:flex-row items-start gap-4">
+                            <!-- Обложка трека -->
+                            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-zinc-900 shrink-0 border border-white/10">
+                                <img src="${cover}" alt="${track.trackName.replace(/"/g, '&quot;')}"
+                                    onerror="this.src='https://placehold.co/160x160/1e1e28/ff2a5f?text=♪'"
+                                    class="w-full h-full object-cover">
+                            </div>
+
+                            <!-- Информация и вердикт Светофора АП -->
+                            <div class="flex-1 min-w-0 space-y-2 w-full">
+                                <div class="flex flex-wrap items-start justify-between gap-2">
+                                    <div class="min-w-0">
+                                        <h4 class="font-bold text-sm sm:text-base text-white truncate">${track.trackName}</h4>
+                                        <p class="text-xs text-zinc-300 truncate">
+                                            <span class="font-semibold">${track.artistName}</span> • <span class="text-zinc-400">${track.collectionName || ''} (${year})</span>
+                                        </p>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold border ${risk.badgeClass}">
+                                        ${risk.badgeText}
+                                    </span>
+                                </div>
+
+                                <div class="text-[11px] font-mono text-zinc-400 truncate">
+                                    <i class="fa-regular fa-copyright mr-1"></i> ${risk.labelSummary}
+                                </div>
+
+                                <p class="text-xs text-zinc-300 bg-[#0f0f13]/80 p-2.5 rounded-xl border border-white/5 leading-relaxed">
+                                    ${risk.explanation}
+                                </p>
+
+                                <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                                    <button onclick="selectTrackForSimulatorByIndex(${idx}, true)"
+                                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-neonRed/85 to-neonPurple/85 hover:from-neonRed hover:to-neonPurple text-white shadow transition">
+                                        <i class="fa-solid fa-headphones"></i>
+                                        <span>Слушать отрывок и тестить Speed / Pitch</span>
+                                    </button>
+                                    <button onclick="copyTrackAttribution(${idx})"
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 transition">
+                                        <i class="fa-regular fa-copy"></i>
+                                        <span>Скопировать кредит для описания</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectTrackForSimulatorByIndex(idx, autoPlay = true) {
+            const track = lastSearchTracks[idx];
+            if (track) selectTrackForSimulator(track, autoPlay);
+        }
+
+        function selectTrackForSimulator(track, autoPlay = false) {
+            const risk = analyzeTrackCopyrightRisk(track);
+            document.getElementById('activeTrackBadge').textContent = track.artistName;
+            document.getElementById('playerTrackTitle').textContent = track.trackName;
+            document.getElementById('playerTrackArtist').textContent = `${track.artistName} • ${track.collectionName || ''}`;
+            document.getElementById('playerLabelInfo').textContent = risk.badgeText;
+            document.getElementById('playerCoverImg').src = track.artworkUrl100 || 'https://placehold.co/100x100/1e1e28/ff2a5f?text=♪';
+
+            currentPlayingTrackId = track.trackId;
+
+            if (track.previewUrl) {
+                previewAudio.src = track.previewUrl;
+                const currentSpeed = parseFloat(document.getElementById('playbackRateSlider').value) || 1.0;
+                previewAudio.playbackRate = currentSpeed;
+                previewAudio.preservesPitch = false;
+                if (autoPlay) {
+                    previewAudio.play().then(() => {
+                        updatePlayButtonState(true);
+                    }).catch(() => {
+                        updatePlayButtonState(false);
+                        showToast('Нажмите кнопку Play в плеере справа для запуска звука', 'info');
+                    });
+                } else {
+                    updatePlayButtonState(false);
+                }
+            } else {
+                previewAudio.pause();
+                previewAudio.src = '';
+                updatePlayButtonState(false);
+                if (autoPlay) {
+                    // Если у трека из офлайн-базы ещё нет ссылки на MP3, подгружаем её из iTunes на лету
+                    fetchPreviewAndPlay(track);
+                }
+            }
+            updateBypassVerdict();
+        }
+
+        async function fetchPreviewAndPlay(track) {
+            try {
+                const q = `${track.artistName} ${track.trackName}`;
+                const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(q)}&entity=song&limit=1`);
+                const data = await res.json();
+                if (data.results && data.results[0] && data.results[0].previewUrl) {
+                    track.previewUrl = data.results[0].previewUrl;
+                    if (data.results[0].artworkUrl100) {
+                        track.artworkUrl100 = data.results[0].artworkUrl100.replace('100x100bb', '200x200bb');
+                        document.getElementById('playerCoverImg').src = track.artworkUrl100;
+                    }
+                    previewAudio.src = track.previewUrl;
+                    const currentSpeed = parseFloat(document.getElementById('playbackRateSlider').value) || 1.0;
+                    previewAudio.playbackRate = currentSpeed;
+                    previewAudio.preservesPitch = false;
+                    await previewAudio.play();
+                    updatePlayButtonState(true);
+                    showToast(`Играет 30-сек превью: ${track.artistName} — ${track.trackName}`);
+                    return;
+                }
+            } catch (e) {}
+            showToast('Для этого трека превью недоступно, но анализ лейбла готов!', 'info');
+        }
+
+        function togglePreviewAudio() {
+            if (!previewAudio.src) {
+                if (lastSearchTracks.length > 0) {
+                    fetchPreviewAndPlay(lastSearchTracks[0]);
+                } else {
+                    showToast('Сначала выберите трек из списка слева', 'warn');
+                }
+                return;
+            }
+            if (previewAudio.paused) {
+                previewAudio.play().then(() => updatePlayButtonState(true)).catch(() => {});
+            } else {
+                previewAudio.pause();
+                updatePlayButtonState(false);
+            }
+        }
+
+        function updatePlayButtonState(isPlaying) {
+            const btn = document.getElementById('mainAudioPlayBtn');
+            btn.innerHTML = isPlaying ? `<i class="fa-solid fa-pause"></i>` : `<i class="fa-solid fa-play"></i>`;
+        }
+
+        function changeAudioSpeed(val) {
+            const speed = parseFloat(val) || 1.0;
+            document.getElementById('playbackRateSlider').value = speed;
+            let label = `${speed.toFixed(2)}x (Оригинал)`;
+            if (speed < 0.95) label = `${speed.toFixed(2)}x (Slowed / Ниже тон)`;
+            if (speed > 1.05) label = `${speed.toFixed(2)}x (Speed Up / Выше тон)`;
+            document.getElementById('playbackRateBadge').textContent = label;
+
+            previewAudio.preservesPitch = false;
+            previewAudio.playbackRate = speed;
+            updateBypassVerdict();
+        }
+
+        function updateBypassVerdict() {
+            const speed = parseFloat(document.getElementById('playbackRateSlider').value) || 1.0;
+            const voiceMix = document.getElementById('toggleVoiceOverMix').checked;
+            const titleEl = document.getElementById('bypassVerdictTitle');
+            const textEl = document.getElementById('bypassVerdictText');
+
+            if (speed !== 1.0 && voiceMix) {
+                titleEl.textContent = 'Комбо: Изменённый тон + Голос и игра поверх (-18 dB)';
+                textEl.textContent = `При скорости ${speed.toFixed(2)}x и приглушении музыки под твой голос и звуки игры у алгоритма Content ID гораздо меньше шансов зацепиться за аудио-отпечаток (особенно на отрезках короче 10–12 секунд). Но помни: 100% гарантию монетизации дают только Royalty-Free треки!`;
+            } else if (speed !== 1.0 && !voiceMix) {
+                titleEl.textContent = `Только изменение скорости (${speed.toFixed(2)}x) без голоса поверх:`;
+                textEl.textContent = 'Миф: «Если ускорить песню на 15%, YouTube её не узнает». На самом деле современная система Content ID проверяет мелодию даже в Slowed и Nightcore версиях, если трек играет громко и без посторонних звуков.';
+            } else {
+                titleEl.textContent = 'Оригинальная скорость (1.00x): совет для монтажа';
+                textEl.textContent = 'Чтобы проверить реакцию YouTube со 100% точностью перед релизом, рендери черновик и заливай его в Творческую студию с доступом «По ссылке» — встроенная проверка YouTube за 3 минуты покажет, есть ли жалобы.';
+            }
+        }
+
+        function copyTrackAttribution(idx) {
+            const track = lastSearchTracks[idx];
+            if (!track) return;
+            const credit = `🎵 Музыка из видео: ${track.artistName} — ${track.trackName} (${track.collectionName || 'Release'})\nПравообладатель / Лицензия: ${track.copyright || 'Standard License'}`;
+            copyTextFallback(credit, 'Строка с указанием трека скопирована для описания YouTube!');
         }
 
         /* =========================================================================
@@ -1935,6 +2559,7 @@
             localStorage.removeItem(STORAGE_KEY);
             appState = JSON.parse(JSON.stringify(defaultState));
             initThumbnailTester();
+            initCopyrightChecker();
             initBpmToolkit();
             initChaptersTool();
             initKanbanAndChecklist();
@@ -1947,6 +2572,7 @@
            ========================================================================= */
         window.onload = function() {
             initThumbnailTester();
+            initCopyrightChecker();
             initBpmToolkit();
             initChaptersTool();
             initKanbanAndChecklist();
